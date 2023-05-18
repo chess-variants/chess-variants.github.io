@@ -3,13 +3,20 @@ intro: |-
 
 items:
   - title: Lichess
-    subtitle: Chess server
+    subtitle: Chess variant server
     description: |-
 
     link: https://www.lichess.org
     link_text: Open lichess
     tags: Chess,Crazyhouse,Atomic,Antichess,Three-Check,King of the Hill,Racing Kings
     github: lichess-org/lila
+  - title: Chess.com
+    subtitle: Chess variant server
+    description: |-
+
+    link: https://www.chess.com/variants
+    link_text: Open chess.com
+    tags: Chess,Crazyhouse,Atomic,Antichess,Three-Check,King of the Hill,Racing Kings,S-Chess,Duck,Bughouse,Fog of War
   - title: Pychess
     subtitle: Chess variant server
     description: |-
