@@ -1,0 +1,39 @@
+style: is-light
+height: is-small
+items:
+  - title: Calendar
+    icon: fa-calendar 
+    description: >
+      Calendar of over the board tournaments
+    call_to_action_name: Calendar
+    call_to_action_link: /tournaments/
+  - title: Websites
+    icon: fa-chess-pawn
+    description: >
+      Overview of chess variant servers
+    call_to_action_name: Play
+    call_to_action_link: /play/
+  - title: Links
+    icon: fa-link
+    description: >
+      Overview of chess variant links
+    call_to_action_name: Browse
+    call_to_action_link: /links/
+  - title: Books
+    icon: fa-book
+    description: >
+      List of chess variant books
+    call_to_action_name: Read
+    call_to_action_link: /books/
+  - title: GUIs
+    icon: fa-chess-board
+    description: >
+      Overview of chess variant graphical user interfaces
+    call_to_action_name: Download
+    call_to_action_link: /guis/
+  - title: Engines
+    icon: fa-cogs
+    description: >
+      Overview of chess variant engines
+    call_to_action_name: Analyze
+    call_to_action_link: /engines/

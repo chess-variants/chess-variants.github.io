@@ -1,0 +1,40 @@
+intro: |-
+
+
+items:
+  - title: Lichess
+    subtitle: Chess server
+    description: |-
+
+    link: https://www.lichess.org
+    link_text: Open lichess
+    tags: Chess,Crazyhouse,Atomic,Antichess,Three-Check,King of the Hill,Racing Kings
+    github: lichess-org/lila
+  - title: Pychess
+    subtitle: Chess variant server
+    description: |-
+
+    link: https://www.pychess.org
+    link_text: Open pychess
+    tags: Chess,Xiangqi,Shogi,Janggi,Makruk,Capablanca,S-Chess,Duck
+    github: gbtami/pychess-variants
+  - title: Lishogi
+    description: |-
+
+    link: https://www.lishogi.org
+    link_text: Open lishogi
+    tags: Shogi,Minishogi
+    github: WandererXII/lishogi
+  - title: Playstrategy
+    description: |-
+
+    link: https://www.playstrategy.org
+    link_text: Open playstrategy
+    tags: Chess,Shogi,Xiangqi
+    github: Mind-Sports-Games/lila
+  - title: Xiangqi.com
+    description: |-
+
+    link: https://www.xiangqi.com
+    link_text: Open xiangqi.com
+    tags: Xiangqi
