@@ -37,7 +37,7 @@ defaults:
       hero_image: /assets/images/chessvariants_cropped.jpg
 
 # Build settings
-remote_theme: ianfab/bulma-clean-theme
+remote_theme: ianfab/bulma-simple-theme
 plugins:
   - jekyll-feed
 
