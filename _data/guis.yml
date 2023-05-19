@@ -1,0 +1,11 @@
+intro: |-
+
+
+items:
+  - title: LiGround
+    description: |-
+      
+    link: https://ml-research.github.io/liground.github.io/
+    link_text: Download LiGround
+    tags: Chess,Shogi,Xiangqi,Janggi,Makruk,Crazyhouse,Atomic,Antichess,Three-Check,King of the Hill,Racing Kings
+    github: ml-research/liground
