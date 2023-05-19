@@ -12,7 +12,7 @@ items:
     description: >
       Overview of chess variant servers
     call_to_action_name: Play
-    call_to_action_link: /play/
+    call_to_action_link: /servers/
   - title: Links
     icon: fa-link
     description: >
