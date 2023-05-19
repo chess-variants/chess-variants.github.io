@@ -7,14 +7,14 @@
     link: /online-tournaments/
 - name: Websites
   link: /play/
-  dropdown:
-  - name: Play
-    link: /play/
-  - name: Resources
-    link: /resources/
 - name: GUIs
   link: /guis/
 - name: Engines
   link: /engines/
-- name: Books
-  link: /books/
+- name: Resources
+  link: /resources/
+  dropdown:
+  - name: Online
+    link: /resources/
+  - name: Books
+    link: /books/
