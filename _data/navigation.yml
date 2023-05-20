@@ -1,3 +1,13 @@
+- name: Variants
+  dropdown:
+  - name: Shogi
+    link: /variants/shogi/
+  - name: Xiangqi
+    link: /variants/xiangqi/
+  - name: Janggi
+    link: /variants/janggi/
+  - name: Makruk
+    link: /variants/makruk/
 - name: Tournaments
   link: /tournaments/
   dropdown:

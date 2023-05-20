@@ -1,0 +1,27 @@
+---
+layout: page
+---
+
+<div class="content">
+    {{ content }}
+</div>
+
+This is a summary page for {{ page.tag }}. See the respective main pages for a variant independent overview.
+
+{{ "## Tournaments" | markdownify }}
+{% include table.html data=site.data.tournaments key="variant" value=page.tag %}
+
+{{ "## Servers" | markdownify }}
+{% include showcase-items.html items=site.data.servers.items tag=page.tag %}
+
+{{ "## GUIs" | markdownify }}
+{% include showcase-items.html items=site.data.guis.items tag=page.tag %}
+
+{{ "## Engines" | markdownify }}
+{% include showcase-items.html items=site.data.engines.items tag=page.tag %}
+
+{{ "## Resources" | markdownify }}
+{% include showcase-items.html items=site.data.resources.items tag=page.tag %}
+
+{{ "## Books" | markdownify }}
+{% include product-items.html products=site.books tag=page.tag %}

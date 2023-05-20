@@ -42,7 +42,7 @@ plugins:
   - jekyll-feed
 
 collections:
-  products:
+  books:
     output: true
     layout: product
     show_sidebar: false

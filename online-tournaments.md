@@ -1,7 +1,6 @@
 ---
 layout: page
 title: Online Tournaments
-permalink: /online-tournaments/
 ---
 * [Lichess](https://lichess.org/tournament)
 * [PyChess](https://www.pychess.org/tournaments)
