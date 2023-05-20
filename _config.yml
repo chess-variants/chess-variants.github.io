@@ -23,7 +23,8 @@ author:
   name: Fabian Fichter
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
-github_username:  chess-variants
+permalink: pretty
+github_username: chess-variants
 favicon: /assets/images/chessvariants_cropped.jpg
 
 fixed_navbar: top
