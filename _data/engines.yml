@@ -4,7 +4,7 @@ intro: |-
 items:
   - title: Fairy-Stockfish
     description: |-
-      Strongest chess variant in many variants, configurable for custom variants.
+      Strongest chess variant in many variants. Configurable for custom variants.
     link: https://fairy-stockfish.github.io/
     link_text: Download Fairy-Stockfish
     tags: Chess,Shogi,Xiangqi,Janggi,Makruk,Crazyhouse,Atomic,Antichess,S-Chess,Duck,Bughouse,Custom variants
@@ -14,19 +14,19 @@ items:
       Configurable chess variant engine supporting many variants.
     link: http://www.eglebbk.dds.nl/program/chess-index.html
     link_text: Download Sjaak
-    tags: Chess,Shogi,Xiangqi,Crazyhouse,Atomic,Antichess,S-Chess,Custom variants
+    tags: Custom variants
   - title: Fairymax
     description: |-
       Configurable chess variant engine supporting many variants.
     link: https://home.hccnet.nl/h.g.muller/CVfairy.html
     link_text: Download Fairymax
-    tags: Chess,Shogi,Xiangqi,Crazyhouse,Atomic,Antichess,S-Chess,Custom variants
+    tags: Custom variants
   - title: Nebiyu
     description: |-
       Configurable chess variant engine supporting many variants.
     link: https://sites.google.com/site/dshawul/home
     link_text: Download Nebiyu
-    tags: Chess,Shogi,Xiangqi,Crazyhouse,Atomic,Antichess,S-Chess,Custom variants
+    tags: Custom variants
   - title: YaneuraOu
     description: |-
       Strongest open source Shogi engine, based on Stockfish.
