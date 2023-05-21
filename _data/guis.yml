@@ -42,3 +42,18 @@ items:
     link: https://gulbijanggi.com
     link_text: Download Gulbi
     tags: Janggi
+  - title: Fairyground 
+    subtitle: Fairy-Stockfish playground in the browser
+    description: |- 
+       Fairyground serves as a playground to try out Fairy-Stockfish online with custom variants, enabling game play and interactive analysis.
+    link: https://fairyground.vercel.app/ 
+    link_text: Open fairyground 
+    tags: Custom variants 
+    github: ianfab/fairyground
+  - title: FairyFishGUI
+    description: |- 
+       
+    link: https://github.com/fairy-stockfish/FairyFishGUI           
+    link_text: Download FairyFishGUI
+    tags: Custom variants 
+    github: fairy-stockfish/FairyFishGUI
