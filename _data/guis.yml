@@ -29,3 +29,10 @@ items:
     link_text: Download PyChess
     tags: Chess,Makruk,Crazyhouse,Atomic,Antichess,Horde,Three-Check,King of the Hill,Racing Kings,S-Chess
     github: pychess/pychess
+  - title: Ludii
+    description: |-
+      
+    link: https://ludii.games
+    link_text: Download Ludii
+    tags: Custom variants
+    github: Ludeme/Ludii
