@@ -39,6 +39,12 @@ items:
     link_text: Open playstrategy
     tags: Chess,Shogi,Xiangqi
     github: Mind-Sports-Games/lila
+  - title: PlayOk
+    description: |-
+
+    link: https://www.playok.com
+    link_text: Open PlayOk
+    tags: Chess,Shogi,Xiangqi,Makruk
   - title: Xiangqi.com
     description: |-
 
