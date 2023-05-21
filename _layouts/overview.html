@@ -24,4 +24,6 @@ This is a summary page for {{ page.tag }}. See the respective main pages for a v
 {% include showcase-items.html items=site.data.resources.items tag=page.tag %}
 
 {{ "## Books" | markdownify }}
+<div class="columns is-multiline">
 {% include product-items.html products=site.books tag=page.tag %}
+</div>
