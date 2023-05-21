@@ -8,6 +8,8 @@
     link: /variants/janggi/
   - name: Makruk
     link: /variants/makruk/
+  - name: Custom
+    link: /variants/custom/
 - name: Tournaments
   link: /tournaments/
   dropdown:

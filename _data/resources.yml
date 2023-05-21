@@ -7,3 +7,28 @@ items:
       Website about chess variants
     link: https://www.chessvariants.com/
     link_text: Visit
+    tags: Custom variants
+  - title: Xqinenglish.com
+    description: |-
+      Learning resources for Xiangqi in English
+    link: https://www.xqinenglish.com/
+    link_text: Visit
+    tags: Xiangqi
+  - title: ShogiHarbour
+    description: |-
+      Youtube Channel for Shogi
+    link: https://www.youtube.com/@ShogiHarbour
+    link_text: Visit
+    tags: Shogi
+  - title: JannLeeCrazyhouse
+    description: |-
+      Youtube Channel for Crazyhouse
+    link: https://www.youtube.com/@JannLeeCrazyhouseChannel
+    link_text: Visit
+    tags: Crazyhouse
+  - title: JanggiFrance
+    description: |-
+      Youtube Channel for Janggi
+    link: https://www.youtube.com/@janggifrance-7933
+    link_text: Visit
+    tags: Janggi
