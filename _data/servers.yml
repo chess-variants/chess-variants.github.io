@@ -45,6 +45,13 @@ items:
     link: https://www.playok.com
     link_text: Open PlayOk
     tags: Chess,Shogi,Xiangqi,Makruk
+  - title: 81dojo
+     description: |- 
+  
+     link: https://www.81dojo.com
+     link_text: Open 81dojo
+     tags: Shogi,Minishogi,Kyotoshogi,Gorogoro,Dobutsu
+     github: WandererXII/lishogi
   - title: Xiangqi.com
     description: |-
 
