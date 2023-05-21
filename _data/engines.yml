@@ -41,3 +41,10 @@ items:
     link_text: Download Pikafish
     tags: Xiangqi
     github: official-pikafish/Pikafish
+  - title: Stockfish
+    description: |-
+      Strongest open source chess engine, basis of many strong variant engines.
+    link: https://stockfishchess.org/
+    link_text: Download Stockfish
+    tags: Chess
+    github: official-stockfish/Stockfish
