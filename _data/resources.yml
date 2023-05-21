@@ -9,11 +9,11 @@ items:
     link_text: Visit
     tags: Custom variants
   - title: Ludii
-     description: |-
+    description: |-
         
-     link: https://ludii.games
-     link_text: Visit
-     tags: Custom variants
+    link: https://ludii.games
+    link_text: Visit
+    tags: Custom variants
   - title: Xqinenglish.com
     description: |-
       Learning resources for Xiangqi in English
