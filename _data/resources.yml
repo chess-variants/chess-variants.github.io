@@ -8,6 +8,12 @@ items:
     link: https://www.chessvariants.com/
     link_text: Visit
     tags: Custom variants
+  - title: Ludii
+     description: |-
+        
+     link: https://ludii.games
+     link_text: Visit
+     tags: Custom variants
   - title: Xqinenglish.com
     description: |-
       Learning resources for Xiangqi in English
