@@ -20,6 +20,18 @@ items:
     link: https://www.xqinenglish.com/
     link_text: Visit
     tags: Xiangqi
+  - title: TheChessPolyglot
+    description: |-
+      Learning resources for Xiangqi, Shogi and Makruk in English
+    link: https://thechesspolyglot.netlify.app/
+    link_text: Visit
+    tags: Xiangqi,Shogi,Makruk
+  - title: Illion-atomic
+    description: |-
+      Learning resources for Atomic chess in English
+    link: https://illion-atomic.netlify.app/
+    link_text: Visit
+    tags: Atomic
   - title: ShogiHarbour
     description: |-
       Youtube Channel for Shogi
