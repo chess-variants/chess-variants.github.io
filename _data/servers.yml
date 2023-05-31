@@ -47,11 +47,10 @@ items:
     tags: Chess,Shogi,Xiangqi,Makruk
   - title: 81dojo
     description: |- 
-  
+
     link: https://www.81dojo.com
     link_text: Open 81dojo
     tags: Shogi,Minishogi,Kyotoshogi,Gorogoro,Dobutsu
-    github: WandererXII/lishogi
   - title: Xiangqi.com
     description: |-
 
@@ -66,7 +65,7 @@ items:
     tags: Xiangqi
   - title: greenchess.net
     description: |-
-    
+
     link: https://greenchess.net
     link_text: Open greenchess.net
     tags: Hexagonal,Three-player,Double-move
