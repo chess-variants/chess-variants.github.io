@@ -1,6 +1,6 @@
 ---
 title: Better Moves for Better Shogi
-subtitle: by Teruichi Aono 9-dan
+subtitle: by Aono Teruichi
 layout: product
 tags: [Shogi]
 ---
