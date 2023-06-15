@@ -3,69 +3,74 @@ intro: |-
 
 items:
   - title: Lichess
-    subtitle: Chess variant server
+    subtitle: Open source chess server
     description: |-
-
+      Biggest open source chess server, also supporting a few chess variants.
+      Uses Fairy-Stockfish for chess variant analysis and play against the computer.
     link: https://www.lichess.org
     link_text: Open lichess
     tags: Chess,Crazyhouse,Atomic,Antichess,Three-Check,King of the Hill,Racing Kings
     github: lichess-org/lila
   - title: Chess.com
-    subtitle: Chess variant server
     description: |-
-
+      Biggest commercial chess server, also supporting many chess variants.
+      The variants server is a bit slow and unstable, but has a big user base.
     link: https://www.chess.com/variants
     link_text: Open chess.com
     tags: Chess,Crazyhouse,Atomic,Antichess,Three-Check,King of the Hill,Racing Kings,S-Chess,Duck,Bughouse,Fog of War
   - title: Pychess
-    subtitle: Chess variant server
+    subtitle: Open source chess variant server
     description: |-
-
+      PyChess is a chess variants website trying to provide the look and feel of lichess. It supports a large variety of variants,
+      including analysis with and play against Fairy-Stockfish.
+      Currently is the only website where all major regional chess variants can be played and analyzed.
+      Not to be confused with the PyChess GUI.
     link: https://www.pychess.org
     link_text: Open pychess
     tags: Chess,Xiangqi,Shogi,Janggi,Makruk,Capablanca,S-Chess,Duck
     github: gbtami/pychess-variants
   - title: Lishogi
     description: |-
-
+      Lishogi is an open source shogi website based on lichess.
     link: https://www.lishogi.org
     link_text: Open lishogi
     tags: Shogi,Minishogi
     github: WandererXII/lishogi
   - title: Playstrategy
     description: |-
-
+      Playstrategy is an open source abstract strategy game website based on lichess, supporting some chess variants and more strategy games.
     link: https://www.playstrategy.org
     link_text: Open playstrategy
     tags: Chess,Shogi,Xiangqi
     github: Mind-Sports-Games/lila
   - title: PlayOk
     description: |-
-
+      PlayOk is a free abstract strategy strategy game website supporting a few regional chess variants.
+      It has quite many players, but a rather dated interface.
     link: https://www.playok.com
     link_text: Open PlayOk
     tags: Chess,Shogi,Xiangqi,Makruk
   - title: 81dojo
     description: |- 
-
+      81dojo is a free shogi website, perhaps the biggest not only available in Japanese language.
     link: https://www.81dojo.com
     link_text: Open 81dojo
     tags: Shogi,Minishogi,Kyotoshogi,Gorogoro,Dobutsu
   - title: Xiangqi.com
     description: |-
-
+      Relatively new Xiangqi website with game play and puzzles.
     link: https://www.xiangqi.com
     link_text: Open xiangqi.com
     tags: Xiangqi
   - title: clubxiangqi.com
     description: |-
-
+      Xiangqi website.
     link: https://www.clubxiangqi.com
     link_text: Open clubxiangqi.com
     tags: Xiangqi
   - title: greenchess.net
     description: |-
-
+      Chess variant website.
     link: https://greenchess.net
     link_text: Open greenchess.net
     tags: Hexagonal,Three-player,Double-move

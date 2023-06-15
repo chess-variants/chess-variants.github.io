@@ -4,7 +4,8 @@ intro: |-
 items:
   - title: Fairy-Stockfish
     description: |-
-      Strongest chess variant in many variants. Configurable for custom variants.
+      Strongest chess variant engine in many variants. Configurable for custom variants.
+      Used on many chess variant websites such as Lichess, Pychess, Lishogi, etc.
     link: https://fairy-stockfish.github.io/
     link_text: Download Fairy-Stockfish
     tags: Chess,Shogi,Xiangqi,Janggi,Makruk,Crazyhouse,Atomic,Antichess,S-Chess,Duck,Bughouse,Custom variants
@@ -43,7 +44,7 @@ items:
     github: official-pikafish/Pikafish
   - title: Stockfish
     description: |-
-      Strongest open source chess engine, basis of many strong variant engines.
+      Strongest open source chess engine, basis of many strong variant engines. Only supported variant is Chess960.
     link: https://stockfishchess.org/
     link_text: Download Stockfish
     tags: Chess

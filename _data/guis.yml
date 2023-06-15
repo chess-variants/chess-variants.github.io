@@ -4,41 +4,46 @@ intro: |-
 items:
   - title: LiGround
     description: |-
-      
+      LiGround is a modern, cross-platform chess variant GUI for lichess variants and regional variants.
+      As it is a rather new project the set of features is rather limited, but working well for basic analysis and game play.
+      Compatible with UCI engines, especially Fairy-Stockfish, since LiGrounds rule implementation is based on it.
     link: https://ml-research.github.io/liground.github.io/
     link_text: Download LiGround
     tags: Chess,Shogi,Xiangqi,Janggi,Makruk,Crazyhouse,Atomic,Antichess,Horde,Three-Check,King of the Hill,Racing Kings
     github: ml-research/liground
   - title: WinBoard/XBoard
     description: |-
-      
+      WinBoard/XBoard is an old but very feature rich chess variant GUI supporting a large variety of chess variants, including user/engine defined games.
+      Not as modern and stable as other GUIs, but still one of the most used variant GUIs. Compatible with CECP/XBoard engines.
     link: http://hgm.nubati.net/
     link_text: Download WinBoard
     tags: Chess,Shogi,Xiangqi,Janggi,Makruk,Crazyhouse,Atomic,Antichess,Spartan,Berolina
   - title: Cutechess
     description: |-
-      
+      Cutechess mainly a chess (variant) engine tournament manager, with both a command line and a graphical user interface.
+      Also supportd game play against engines, but does not have analysis features.
     link: https://github.com/cutechess/cutechess
     link_text: Download Cutechess
     tags: Chess,Shogi,Makruk,Crazyhouse,Atomic,Antichess,Horde,Three-Check,King of the Hill,Racing Kings,S-Chess,Berolina
     github: cutechess/cutechess
   - title: PyChess
     description: |-
-      
+      PyChess GUI, not to be confused with the pychess variants website, supports several chess variants for 8x8 boards.
+      It has features for analysis and game play, and is compatible to UCI and CECP chess variant engines. 
     link: https://pychess.github.io/
     link_text: Download PyChess
     tags: Chess,Makruk,Crazyhouse,Atomic,Antichess,Horde,Three-Check,King of the Hill,Racing Kings,S-Chess
     github: pychess/pychess
   - title: Ludii
     description: |-
-      
+      Ludii is a general game playing system with many built-in games and support for custom games, not limited to chess variants.
     link: https://ludii.games
     link_text: Download Ludii
     tags: Custom variants
     github: Ludeme/Ludii
   - title: Gulbi
     description: |-
-      
+      Gulbi is a Korean Janggi GUI designed for compatibility with Fairy-Stockfish.
     link: https://gulbijanggi.com
     link_text: Download Gulbi
     tags: Janggi
@@ -52,7 +57,9 @@ items:
     github: ianfab/fairyground
   - title: FairyFishGUI
     description: |- 
-       
+       FairyFishGUI is a generic GUI for Fairy-Stockfish which by design supports all variants Fairy-Stockfish supports,
+       including all user-defined variants. It is very minimalistic and mainly meant as a simple fallback solution for variants
+       where no other chess variant GUI exist.
     link: https://github.com/fairy-stockfish/FairyFishGUI           
     link_text: Download FairyFishGUI
     tags: Custom variants 
