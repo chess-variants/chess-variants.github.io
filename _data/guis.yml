@@ -26,7 +26,7 @@ items:
     link_text: Download Cutechess
     tags: Chess,Shogi,Makruk,Crazyhouse,Atomic,Antichess,Horde,Three-Check,King of the Hill,Racing Kings,S-Chess,Berolina
     github: cutechess/cutechess
-  - title: PyChess
+  - title: PyChess GUI
     description: |-
       PyChess GUI, not to be confused with the pychess variants website, supports several chess variants for 8x8 boards.
       It has features for analysis and game play, and is compatible to UCI and CECP chess variant engines. 
@@ -34,6 +34,12 @@ items:
     link_text: Download PyChess
     tags: Chess,Makruk,Crazyhouse,Atomic,Antichess,Horde,Three-Check,King of the Hill,Racing Kings,S-Chess
     github: pychess/pychess
+  - title: ShogiGUI
+    description: |-
+      ShogiGUI is a Windows GUI for Shogi. Can also be run on Linux using mono/wine, e.g., [with docker](https://github.com/jruffet/docker-shogigui).
+    link: http://shogigui.siganus.com/
+    link_text: Download ShogiGUI
+    tags: Shogi
   - title: Ludii
     description: |-
       Ludii is a general game playing system with many built-in games and support for custom games, not limited to chess variants.

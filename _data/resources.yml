@@ -8,30 +8,12 @@ items:
     link: https://www.chessvariants.com/
     link_text: Visit
     tags: Custom variants
-  - title: Ludii
-    description: |-
-        
-    link: https://ludii.games
-    link_text: Visit
-    tags: Custom variants
   - title: Xqinenglish.com
     description: |-
       Learning resources for Xiangqi in English
     link: https://www.xqinenglish.com/
     link_text: Visit
     tags: Xiangqi
-  - title: TheChessPolyglot
-    description: |-
-      Learning resources for Xiangqi, Shogi and Makruk in English
-    link: https://thechesspolyglot.netlify.app/
-    link_text: Visit
-    tags: Xiangqi,Shogi,Makruk
-  - title: Illion-atomic
-    description: |-
-      Learning resources for Atomic chess in English
-    link: https://illion-atomic.netlify.app/
-    link_text: Visit
-    tags: Atomic
   - title: ShogiHarbour
     description: |-
       Youtube Channel for Shogi
@@ -50,3 +32,21 @@ items:
     link: https://www.youtube.com/@janggifrance-7933
     link_text: Visit
     tags: Janggi
+  - title: Ludii
+    description: |-
+      Ludii is a general game system trying to reconstruct the rules of many games, including chess variants.
+    link: https://ludii.games
+    link_text: Visit
+    tags: Custom variants
+  - title: TheChessPolyglot
+    description: |-
+      Learning resources for Xiangqi, Shogi and Makruk in English
+    link: https://thechesspolyglot.netlify.app/
+    link_text: Visit
+    tags: Xiangqi,Shogi,Makruk
+  - title: Illion-atomic
+    description: |-
+      Learning resources for Atomic chess in English
+    link: https://illion-atomic.netlify.app/
+    link_text: Visit
+    tags: Atomic
