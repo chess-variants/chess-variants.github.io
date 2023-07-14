@@ -6,7 +6,7 @@ items:
     description: |-
       LiGround is a modern, cross-platform chess variant GUI for lichess variants and regional variants.
       As it is a rather new project the set of features is rather limited, but working well for basic analysis and game play.
-      Compatible with UCI engines, especially Fairy-Stockfish, since LiGrounds rule implementation is based on it.
+      Compatible with UCI engines, especially Fairy-Stockfish, since LiGround's rule implementation is based on it.
     link: https://ml-research.github.io/liground.github.io/
     link_text: Download LiGround
     tags: Chess,Shogi,Xiangqi,Janggi,Makruk,Crazyhouse,Atomic,Antichess,Horde,Three-Check,King of the Hill,Racing Kings
@@ -17,7 +17,7 @@ items:
       Not as modern and stable as other GUIs, but still one of the most used variant GUIs. Compatible with CECP/XBoard engines.
     link: http://hgm.nubati.net/
     link_text: Download WinBoard
-    tags: Chess,Shogi,Xiangqi,Janggi,Makruk,Crazyhouse,Atomic,Antichess,Spartan,Berolina
+    tags: Chess,Shogi,Xiangqi,Janggi,Makruk,Crazyhouse,Atomic,Antichess,Spartan,Berolina,Duck
   - title: Cutechess
     description: |-
       Cutechess mainly a chess (variant) engine tournament manager, with both a command line and a graphical user interface.
@@ -36,7 +36,7 @@ items:
     github: pychess/pychess
   - title: ShogiGUI
     description: |-
-      ShogiGUI is a Windows GUI for Shogi. Can also be run on Linux using mono/wine, e.g., [with docker](https://github.com/jruffet/docker-shogigui).
+      ShogiGUI is a Windows GUI for Shogi. It can also be run on Linux using mono/wine, e.g., [with docker](https://github.com/jruffet/docker-shogigui).
     link: http://shogigui.siganus.com/
     link_text: Download ShogiGUI
     tags: Shogi
@@ -53,7 +53,7 @@ items:
     link: https://gulbijanggi.com
     link_text: Download Gulbi
     tags: Janggi
-  - title: Fairyground 
+  - title: Fairyground
     subtitle: Fairy-Stockfish playground in the browser
     description: |- 
        Fairyground serves as a playground to try out Fairy-Stockfish online with custom variants, enabling game play and interactive analysis.

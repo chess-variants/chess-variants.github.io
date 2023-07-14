@@ -4,27 +4,27 @@ intro: |-
 items:
   - title: Fairy-Stockfish
     description: |-
-      Strongest chess variant engine in many variants. Configurable for custom variants.
-      Used on many chess variant websites such as Lichess, Pychess, Lishogi, etc.
+      Strongest open source chess variant engine in many variants. Configurable for custom variants and trainable with NNUE (neural networks).
+      Used by many chess variant websites such as Lichess, Pychess, Lishogi, etc.
     link: https://fairy-stockfish.github.io/
     link_text: Download Fairy-Stockfish
     tags: Chess,Shogi,Xiangqi,Janggi,Makruk,Crazyhouse,Atomic,Antichess,S-Chess,Duck,Bughouse,Custom variants
     github: fairy-stockfish/Fairy-Stockfish
   - title: Sjaak II
     description: |-
-      Configurable chess variant engine supporting many variants.
+      Configurable open source chess variant engine supporting a large variety of chess variants. Used to be one of the strongest variant engines, but it is mostly superseded by Fairy-Stockfish now, also because it is no longer actively developed.
     link: http://www.eglebbk.dds.nl/program/chess-index.html
     link_text: Download Sjaak
     tags: Custom variants
   - title: Fairymax
     description: |-
-      Configurable chess variant engine supporting many variants.
+      The default chess variant engine coming with WinBoard/XBoard.
     link: https://home.hccnet.nl/h.g.muller/CVfairy.html
     link_text: Download Fairymax
     tags: Custom variants
   - title: Nebiyu
     description: |-
-      Configurable chess variant engine supporting many variants.
+      Configurable chess variant engine.
     link: https://sites.google.com/site/dshawul/home
     link_text: Download Nebiyu
     tags: Custom variants
@@ -47,5 +47,5 @@ items:
       Strongest open source chess engine, basis of many strong variant engines. Only supported variant is Chess960.
     link: https://stockfishchess.org/
     link_text: Download Stockfish
-    tags: Chess
+    tags: Chess,Chess960
     github: official-stockfish/Stockfish

@@ -2,33 +2,39 @@ intro: |-
 
 
 items:
-  - title: Chessvariants.com
+  - title: The Chess Variant Pages
     description: |-
-      Website about chess variants
+      Website about chess variants, documenting rules and history of each listed game, with limited support for game play.
     link: https://www.chessvariants.com/
     link_text: Visit
     tags: Custom variants
   - title: Xqinenglish.com
     description: |-
-      Learning resources for Xiangqi in English
+      Learning resources for Xiangqi in English.
     link: https://www.xqinenglish.com/
     link_text: Visit
     tags: Xiangqi
   - title: ShogiHarbour
     description: |-
-      Youtube Channel for Shogi
+      Youtube Channel for Shogi by the first professional shogi player from outside Japan.
     link: https://www.youtube.com/@ShogiHarbour
+    link_text: Visit
+    tags: Shogi
+  - title: Hidetchi
+    description: |-
+      One of the oldest and most well known youtube channels for shogi with rule explanations, game commentary, and opening analysis.
+    link: https://www.youtube.com/@HIDETCHI
     link_text: Visit
     tags: Shogi
   - title: JannLeeCrazyhouse
     description: |-
-      Youtube Channel for Crazyhouse
+      Youtube Channel for Crazyhouse by one of the strongest players of the game.
     link: https://www.youtube.com/@JannLeeCrazyhouseChannel
     link_text: Visit
     tags: Crazyhouse
   - title: JanggiFrance
     description: |-
-      Youtube Channel for Janggi
+      Youtube Channel for Janggi by the first Western pro player.
     link: https://www.youtube.com/@janggifrance-7933
     link_text: Visit
     tags: Janggi
@@ -40,13 +46,49 @@ items:
     tags: Custom variants
   - title: TheChessPolyglot
     description: |-
-      Learning resources for Xiangqi, Shogi and Makruk in English
+      Learning resources for Xiangqi, Shogi and Makruk in English.
     link: https://thechesspolyglot.netlify.app/
     link_text: Visit
     tags: Xiangqi,Shogi,Makruk
   - title: Illion-atomic
     description: |-
-      Learning resources for Atomic chess in English
+      Learning resources for Atomic chess in English.
     link: https://illion-atomic.netlify.app/
     link_text: Visit
     tags: Atomic
+  - title: chessdb.cn
+    description: |-
+      Xiangqi cloud opening database with engine analysis.
+    link: http://www.chessdb.cn/query_en/
+    link_text: Visit
+    tags: Xiangqi
+  - title: 01xq.com
+    description: |-
+      Xiangqi game and opening database.
+    link: http://www.01xq.com/
+    link_text: Visit
+    tags: Xiangqi
+  - title: WXF website
+    description: |-
+      World Xiangqi Federation website with rules, news, tournaments, etc.
+    link: https://www.wxf-xiangqi.org/index.php?lang=en
+    link_text: Visit
+    tags: Xiangqi
+  - title: FESA website
+    description: |-
+      Website of the European Shogi Association with rules, ratings, tournaments, etc.
+    link: http://fesashogi.eu/
+    link_text: Visit
+    tags: Shogi
+  - title: Abema TV Shogi
+    description: |-
+      24/7 Shogi channel of Abema TV in Japanese. Broadcasts with commentary from most major professional tournaments.
+    link: https://abema.tv/now-on-air/shogi
+    link_text: Visit
+    tags: Shogi
+  - title: Playshogi
+    description: |-
+      Shogi website with puzzles, analysis, etc.
+    link: https://playshogi.com/
+    link_text: Visit
+    tags: Shogi
