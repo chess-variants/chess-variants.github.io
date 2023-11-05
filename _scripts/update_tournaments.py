@@ -34,6 +34,8 @@ def get_fesa_tourneys():
         return datetime.datetime.strptime(row[col].strip(), '%d %b').replace(year=int(row['Year'])).strftime('%Y-%m-%d')
     df['Start'] = df.apply(lambda r: reformat_date(r, 'Start'), axis=1)
     df['End'] = df.apply(lambda r: reformat_date(r, 'End'), axis=1)
+    # remove street name in location
+    df['Place'].replace(to_replace='[^, ][^,]* \d+,\s*', value='', regex=True, inplace=True)
     # add additional info
     df['Source'] = "<a href='{}'>fesashogi.eu</a>".format(URL)
     df['Variant'] = 'Shogi'
@@ -43,8 +45,8 @@ def get_fesa_tourneys():
 def merge(current, new):
     new.columns = current.columns
     return pd.concat([
-        current,
-        new[new['tournament'].isin(current['tournament']) == False],
+        current[current['tournament'].isin(new['tournament']) == False],
+        new,
     ]).sort_values(by=['start-date'])
 
 
