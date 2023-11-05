@@ -48,7 +48,7 @@ def merge(current, new):
     return pd.concat([
         current[current['tournament'].isin(new['tournament']) == False],
         new,
-    ]).sort_values(by=['start-date'])
+    ]).sort_values(by=['start-date', 'end-date'])
 
 
 if __name__ == '__main__':
