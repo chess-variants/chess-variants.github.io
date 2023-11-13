@@ -10,7 +10,7 @@ import requests
 import pandas as pd
 
 
-ALL_VARIANTS = set(('Shogi', 'Xiangqi', 'Janggi', 'Makruk'))
+ALL_VARIANTS = set(('shogi', 'xiangqi', 'janggi', 'makruk'))
 FESA_URL = 'http://fesashogi.eu/index.php?mid=2'
 DXB_URL = 'http://chinaschach.de/blog/events/now/?ical=1'
 TOURNEY_MOMENTUMS_URL = 'https://tourney-momentums.eu/tournaments/category/english/list/?ical=1'
@@ -27,9 +27,9 @@ def get_variant(title, variants):
     words = set(title.lower().split())
     found = words.intersection(variants)
     if len(found) == 1:
-        return found.pop()
+        return found.pop().capitalize()
     else:
-        return variants[0]
+        return variants[0].capitalize()
 
 
 def render_link(url):
@@ -97,8 +97,8 @@ if __name__ == '__main__':
     ]
     if not args.offline:
         calendars.extend([
-            get_ics_calendar(TOURNEY_MOMENTUMS_URL, current.columns, ('Shogi', 'Xiangqi', 'Janggi', 'Makruk')),
-            get_ics_calendar(DXB_URL, current.columns, ('Xiangqi',)),
+            get_ics_calendar(TOURNEY_MOMENTUMS_URL, current.columns, ('shogi', 'xiangqi', 'janggi', 'makruk')),
+            get_ics_calendar(DXB_URL, current.columns, ('xiangqi',)),
             get_html_calendar(FESA_URL, current.columns),
         ])
     merged = pd.concat(calendars)
