@@ -1,19 +1,61 @@
+import argparse
 import datetime
 from pathlib import Path
+from urllib.parse import urlparse
+import re
+import sys
 
+import icalendar
 import requests
 import pandas as pd
 
 
-def get_html(target, params=None):
+ALL_VARIANTS = set(('Shogi', 'Xiangqi', 'Janggi', 'Makruk'))
+FESA_URL = 'http://fesashogi.eu/index.php?mid=2'
+DXB_URL = 'http://chinaschach.de/blog/events/now/?ical=1'
+TOURNEY_MOMENTUMS_URL = 'https://tourney-momentums.eu/tournaments/category/english/list/?ical=1'
+
+
+def get_content(target, params=None):
     response = requests.get(target, params=params)
     response.raise_for_status()
     return response.content
 
 
-def get_fesa_tourneys():
-    URL = 'http://fesashogi.eu/index.php?mid=2'
-    html = get_html(URL)
+def get_variant(title, variants):
+    assert ALL_VARIANTS.intersection(variants)
+    words = set(title.lower().split())
+    found = words.intersection(variants)
+    if len(found) == 1:
+        return found.pop()
+    else:
+        return variants[0]
+
+
+def render_link(url):
+    return "<a href='{}'>{}</a>".format(url, urlparse(url).netloc)
+
+
+def get_ics_calendar(url, columns, variants):
+    ics = get_content(url)
+    gcal = icalendar.Calendar.from_ical(ics)
+    tournaments = []
+    for component in gcal.walk():
+        if component.name == "VEVENT":
+            tournament_url = component.get('url') or url
+            tournaments.append([
+                component.decoded('dtstart').strftime('%Y-%m-%d'),
+                component.decoded('dtend').strftime('%Y-%m-%d'),
+                get_variant(component.get('summary'), variants),
+                component.get('location'),
+                component.get('summary'),
+                render_link(tournament_url)
+            ])
+    return pd.DataFrame(tournaments, columns=columns)
+
+
+def get_html_calendar(url, columns):
+    html = get_content(url)
     df_list = pd.read_html(html, flavor='lxml')
     assert len(df_list) == 1
     df = df_list[-1]
@@ -29,33 +71,47 @@ def get_fesa_tourneys():
     df = df[df['Date'] != 'Date']
     df = df[df['Date'].notna()]
     df[['Start', 'End']] = df['Date'].str.split('-', expand=True)
-    df['End'] = df.Start.combine_first(df.End)
+    df['End'] = df.End.combine_first(df.Start)
     def reformat_date(row, col):
         return datetime.datetime.strptime(row[col].strip(), '%d %b').replace(year=int(row['Year'])).strftime('%Y-%m-%d')
     df['Start'] = df.apply(lambda r: reformat_date(r, 'Start'), axis=1)
     df['End'] = df.apply(lambda r: reformat_date(r, 'End'), axis=1)
-    # try to remove street names and zip codes in location
-    df['Place'].replace(to_replace='[^, ][^,]* \d+,\s*', value='', regex=True, inplace=True)
-    df['Place'].replace(to_replace='\d+(-\d+)? (\w+)', value=r'\2', regex=True, inplace=True)
     # add additional info
-    df['Source'] = "<a href='{}'>fesashogi.eu</a>".format(URL)
+    df['Source'] = render_link(url)
     df['Variant'] = 'Shogi'
-    return df[['Start', 'End', 'Variant', 'Place', 'Event', 'Source']]
-
-
-def merge(current, new):
-    new.columns = current.columns
-    return pd.concat([
-        current[current['tournament'].isin(new['tournament']) == False],
-        new,
-    ]).sort_values(by=['start-date', 'end-date'])
+    df = df[['Start', 'End', 'Variant', 'Place', 'Event', 'Source']]
+    df.columns = columns
+    return df
 
 
 if __name__ == '__main__':
+    parser = argparse.ArgumentParser()
+    parser.add_argument('-d', '--dry-run', action='store_true', help='Only print, do not write to file')
+    parser.add_argument('-o', '--offline', action='store_true', help='Skip fetching new data')
+    parser.add_argument('-u', '--unfiltered', action='store_true', help='Skip filtering')
+    args = parser.parse_args()
     tsv_path = str((Path(__file__).absolute().parent.parent / '_data' / 'tournaments.tsv').resolve())
     current = pd.read_csv(tsv_path, sep='\t', header=0)
-    new = get_fesa_tourneys()
-    merged = merge(current, new)
-    # filter past events
-    merged = merged[merged['end-date'] >= datetime.datetime.today().strftime('%Y-%m-%d')]
-    merged.to_csv(tsv_path, sep='\t', index=False)
+    calendars = [
+        current
+    ]
+    if not args.offline:
+        calendars.extend([
+            get_ics_calendar(TOURNEY_MOMENTUMS_URL, current.columns, ('Shogi', 'Xiangqi', 'Janggi', 'Makruk')),
+            get_ics_calendar(DXB_URL, current.columns, ('Xiangqi',)),
+            get_html_calendar(FESA_URL, current.columns),
+        ])
+    merged = pd.concat(calendars)
+    # try to remove street names and zip codes in location
+    merged['location'].replace(to_replace='[^, ][^,]* \d+,\s*', value='', regex=True, inplace=True)
+    merged['location'].replace(to_replace='\d+(-\d+)? (\w+)', value=r'\2', regex=True, inplace=True)
+    # filter past and duplicate events
+    if not args.unfiltered:
+        merged = merged[merged['end-date'] >= datetime.datetime.today().strftime('%Y-%m-%d')]
+        merged.drop_duplicates(subset=('start-date', 'variant', 'tournament'), keep='last', inplace=True)
+        # do some more fuzzy matching
+        merged['location2'] = merged['location'].apply(lambda s: re.match(r'^\w*', s).group())
+        merged.drop_duplicates(subset=('start-date', 'end-date', 'variant', 'location2'), keep='last', inplace=True)
+        merged = merged.drop(columns=['location2'])
+    merged = merged.sort_values(by=['start-date', 'end-date', 'variant', 'location', 'tournament'])
+    merged.to_csv(sys.stdout if args.dry_run else tsv_path, sep='\t', index=False)
