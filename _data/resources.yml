@@ -8,12 +8,6 @@ items:
     link: https://www.chessvariants.com/
     link_text: Visit
     tags: Custom variants
-  - title: Xqinenglish.com
-    description: |-
-      Learning resources for Xiangqi in English.
-    link: https://www.xqinenglish.com/
-    link_text: Visit
-    tags: Xiangqi
   - title: ShogiHarbour
     description: |-
       Youtube channel for Shogi by the first professional shogi player from outside Japan.
@@ -56,34 +50,22 @@ items:
     link: https://ludii.games
     link_text: Visit
     tags: Custom variants
-  - title: TheChessPolyglot
-    description: |-
-      Learning resources for Xiangqi, Shogi and Makruk in English.
-    link: https://thechesspolyglot.netlify.app/
-    link_text: Visit
-    tags: Xiangqi,Shogi,Makruk
-  - title: Illion-atomic
-    description: |-
-      Learning resources for Atomic chess in English.
-    link: https://illion-atomic.netlify.app/
-    link_text: Visit
-    tags: Atomic
-  - title: chessdb.cn
-    description: |-
-      Xiangqi cloud opening database with engine analysis.
-    link: http://www.chessdb.cn/query_en/
-    link_text: Visit
-    tags: Xiangqi
   - title: 01xq.com
     description: |-
       Xiangqi game and opening database.
     link: http://www.01xq.com/
     link_text: Visit
     tags: Xiangqi
-  - title: WXF website
+  - title: Xqinenglish.com
     description: |-
-      World Xiangqi Federation website with rules, news, tournaments, etc.
-    link: https://www.wxf-xiangqi.org/index.php?lang=en
+      Learning resources for Xiangqi in English.
+    link: https://www.xqinenglish.com/
+    link_text: Visit
+    tags: Xiangqi
+  - title: chessdb.cn
+    description: |-
+      Xiangqi cloud opening database with engine analysis.
+    link: http://www.chessdb.cn/query_en/
     link_text: Visit
     tags: Xiangqi
   - title: FESA website
@@ -104,3 +86,27 @@ items:
     link: https://playshogi.com/
     link_text: Visit
     tags: Shogi
+  - title: TheChessPolyglot
+    description: |-
+      Learning resources for Xiangqi, Shogi and Makruk in English.
+    link: https://thechesspolyglot.netlify.app/
+    link_text: Visit
+    tags: Xiangqi,Shogi,Makruk
+  - title: Illion-atomic
+    description: |-
+      Learning resources for Atomic chess in English.
+    link: https://illion-atomic.netlify.app/
+    link_text: Visit
+    tags: Atomic
+  - title: WXF website
+    description: |-
+      World Xiangqi Federation website with rules, news, tournaments, etc.
+    link: https://www.wxf-xiangqi.org/index.php?lang=en
+    link_text: Visit
+    tags: Xiangqi
+  - title: GXF website
+    description: |-
+      Website of the German Xiangqi Federation, e.g., having an OTB tournament calendar.
+    link: http://chinaschach.de/blog/
+    link_text: Visit
+    tags: Xiangqi
