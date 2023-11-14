@@ -16,7 +16,7 @@ items:
     tags: Xiangqi
   - title: ShogiHarbour
     description: |-
-      Youtube Channel for Shogi by the first professional shogi player from outside Japan.
+      Youtube channel for Shogi by the first professional shogi player from outside Japan.
     link: https://www.youtube.com/@ShogiHarbour
     link_text: Visit
     tags: Shogi
@@ -28,16 +28,28 @@ items:
     tags: Shogi
   - title: JannLeeCrazyhouse
     description: |-
-      Youtube Channel for Crazyhouse by one of the strongest players of the game.
+      Youtube channel for Crazyhouse by one of the strongest players of the game.
     link: https://www.youtube.com/@JannLeeCrazyhouseChannel
     link_text: Visit
     tags: Crazyhouse
   - title: JanggiFrance
     description: |-
-      Youtube Channel for Janggi by the first Western pro player.
+      Youtube channel for Janggi by the first Western pro player.
     link: https://www.youtube.com/@janggifrance-7933
     link_text: Visit
     tags: Janggi
+  - title: Xiangqi.com on Youtube
+    description: |-
+      Youtube channel of xiangqi.com.
+    link: https://www.youtube.com/@XiangqiChineseChess
+    link_text: Visit
+    tags: Xiangqi
+  - title: PyChess on Youtube
+    description: |-
+      Youtube channel of PyChess about chess variants.
+    link: https://www.youtube.com/@pychess
+    link_text: Visit
+    tags: Xiangqi,Shogi,Makruk,Custom variants
   - title: Ludii
     description: |-
       Ludii is a general game system trying to reconstruct the rules of many games, including chess variants.
