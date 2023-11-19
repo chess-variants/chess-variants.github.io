@@ -12,7 +12,7 @@ import pandas as pd
 
 ALL_VARIANTS = set(('shogi', 'xiangqi', 'janggi', 'makruk'))
 FESA_URL = 'http://fesashogi.eu/index.php?mid=2'
-DXB_URL = 'http://chinaschach.de/blog/events/now/?ical=1'
+DXB_URL = 'http://chinaschach.de/blog/events/list/?ical=1'
 TOURNEY_MOMENTUMS_URL = 'https://tourney-momentums.eu/tournaments/category/english/list/?ical=1'
 
 
