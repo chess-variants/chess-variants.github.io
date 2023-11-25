@@ -84,6 +84,15 @@ def get_html_calendar(url, columns):
     return df
 
 
+def prettify_location(locations):
+    # street names
+    locations.replace(to_replace='[^, ][^,]* \d+', value='', regex=True, inplace=True)
+    # strip zip code from city
+    locations.replace(to_replace=r'\d{4,6}|\d+\-\d+', value=r'', regex=True, inplace=True)
+    # clean up by removing redundance and consolidating whitespacing
+    return locations.apply(lambda x: ", ".join(dict.fromkeys(s.strip() for s in x.split(',') if s.strip())))
+
+
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('-d', '--dry-run', action='store_true', help='Only print, do not write to file')
@@ -102,9 +111,8 @@ if __name__ == '__main__':
             get_html_calendar(FESA_URL, current.columns),
         ])
     merged = pd.concat(calendars)
-    # try to remove street names and zip codes in location
-    merged['location'].replace(to_replace='[^, ][^,]* \d+,\s*', value='', regex=True, inplace=True)
-    merged['location'].replace(to_replace='\d+(-\d+)? (\w+)', value=r'\2', regex=True, inplace=True)
+    # try to remove street names, zip codes, and redundancy in location
+    merged['location'] = prettify_location(merged['location'])
     # filter past and duplicate events
     if not args.unfiltered:
         merged = merged[merged['end-date'] >= datetime.datetime.today().strftime('%Y-%m-%d')]
