@@ -104,9 +104,15 @@ items:
     link: https://www.wxf-xiangqi.org/index.php?lang=en
     link_text: Visit
     tags: Xiangqi
-  - title: GXF website
+  - title: DXB website
     description: |-
-      Website of the German Xiangqi Federation, e.g., having an OTB tournament calendar.
+      Website of the German Xiangqi Association, e.g., having an OTB tournament calendar.
     link: http://chinaschach.de/blog/
     link_text: Visit
     tags: Xiangqi
+  - title: Tourney momentums
+    description: |-
+      Chess variant tournament calendar.
+    link: https://tourney-momentums.eu/tournaments/
+    link_text: Visit
+    tags: Shogi,Xiangqi,Janggi,Makruk
