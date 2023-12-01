@@ -41,7 +41,6 @@ defaults:
 remote_theme: ianfab/bulma-simple-theme
 plugins:
   - jekyll-feed
-  - jekyll-target-blank
 
 collections:
   books:
