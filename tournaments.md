@@ -10,4 +10,4 @@ Also see other chess variant calendars
 * [DXB (German Xiangqi Association)](http://chinaschach.de/blog/?post_type=tribe_events){:target="_blank"} (Xiangqi)
 * [Tourney Momentums](https://tourney-momentums.eu/tournaments/){:target="_blank"} (Shogi, Xiangqi, Janggi, Makruk)
 
-If you would like to add a tournament, edit the [tournament list on Github](https://github.com/chess-variants/chess-variants.github.io/blob/main/_data/tournaments.tsv) or [send an email](mailto:chessvariantinfo@gmail.com).
+If you would like to add a tournament, edit the [tournament list on Github](https://github.com/chess-variants/chess-variants.github.io/blob/main/_data/tournaments.tsv){:target="_blank"} or [send an email](mailto:chessvariantinfo@gmail.com).

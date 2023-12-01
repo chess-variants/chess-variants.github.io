@@ -36,7 +36,7 @@ items:
     github: pychess/pychess
   - title: ShogiGUI
     description: |-
-      ShogiGUI is a Windows GUI for Shogi. It can also be run on Linux using mono/wine, e.g., [with docker](https://github.com/jruffet/docker-shogigui).
+      ShogiGUI is a Windows GUI for Shogi. It can also be run on Linux using mono/wine, e.g., [with docker](https://github.com/jruffet/docker-shogigui){:target="_blank"}.
     link: http://shogigui.siganus.com/
     link_text: Download ShogiGUI
     tags: Shogi
