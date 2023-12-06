@@ -75,3 +75,9 @@ items:
     link: https://greenchess.net
     link_text: Open greenchess.net
     tags: Hexagonal,Three-player,Double-move
+  - title: SchemingMind
+    description: |-
+      Chess variant website for playing correspondence games in a large variety of variants.
+    link: https://www.schemingmind.com
+    link_text: Open SchemingMind
+    tags: Chess,Shatranj,Makruk,Crazyhouse,Atomic,Suicide,Losers,Three-Check,King of the Hill,Racing Kings,Alice Chess
