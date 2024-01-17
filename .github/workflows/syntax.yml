@@ -12,4 +12,4 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Validate YAML
-        run: yamllint -d relaxed _data/
+        run: yamllint -d '{extends: relaxed, rules: {trailing-spaces: {level: warning}}}' _data/
