@@ -13,7 +13,7 @@ jobs:
       - uses: actions/checkout@v4
       - name: yamllint
         run: |
-          yamllint -d "{extends: relaxed, rules: {trailing-spaces: {level: warning}}}" _data/
+          yamllint -d "{extends: relaxed, rules: {trailing-spaces: {level: warning}, new-line-at-end-of-file: {level: warning}}}" _data/
 
   validate-tsv:
     runs-on: ubuntu-latest
@@ -24,4 +24,4 @@ jobs:
         with:
           find_pattern: "*.tsv"
           find_path: "_data"
-          extra_params: "--delimiter='\t'"
+          extra_params: "--delimiter=\t"
