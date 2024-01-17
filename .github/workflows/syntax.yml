@@ -19,9 +19,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: csvlinter
+      - name: csvlint
         uses: kcheriyath/csvlinter@V0.6.0
         with:
           find_pattern: "*.tsv"
           find_path: "_data"
-          extra_params: "--delimiter=\t"
+          extra_params: "--delimiter=\\t"
