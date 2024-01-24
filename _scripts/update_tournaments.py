@@ -90,7 +90,7 @@ def prettify_location(locations):
     # strip zip code from city
     locations.replace(to_replace=r'\d{4,6}|\d+\-\d+', value=r'', regex=True, inplace=True)
     # clean up by removing redundance and consolidating whitespacing
-    return locations.apply(lambda x: ", ".join(dict.fromkeys(s.strip() for s in (x or '').split(',') if s.strip())))
+    return locations.apply(lambda x: ", ".join(dict.fromkeys(s.strip() for s in str(x or '-').split(',') if s.strip())))
 
 
 if __name__ == '__main__':
