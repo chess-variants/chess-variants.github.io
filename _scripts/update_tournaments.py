@@ -13,6 +13,7 @@ import pandas as pd
 ALL_VARIANTS = set(('shogi', 'xiangqi', 'janggi', 'makruk'))
 FESA_URL = 'http://fesashogi.eu/index.php?mid=2'
 DXB_URL = 'http://chinaschach.de/blog/events/list/?ical=1'
+FFS_URL = 'https://shogi.fr/events/liste/?ical=1'
 TOURNEY_MOMENTUMS_URL = 'https://tourney-momentums.eu/tournaments/category/english/list/?ical=1'
 
 
@@ -108,6 +109,7 @@ if __name__ == '__main__':
         calendars.extend([
             get_ics_calendar(TOURNEY_MOMENTUMS_URL, current.columns, ('shogi', 'xiangqi', 'janggi', 'makruk')),
             get_ics_calendar(DXB_URL, current.columns, ('xiangqi',)),
+            get_ics_calendar(FFS_URL, current.columns, ('shogi',)),
             get_html_calendar(FESA_URL, current.columns),
         ])
     merged = pd.concat(calendars)
