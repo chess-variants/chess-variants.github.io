@@ -9,3 +9,4 @@ See the following calendars for online chess variant tournaments:
 * [PlayStrategy](https://playstrategy.org/tournament){:target="_blank"}
 * [Lishogi](https://lishogi.org/tournament){:target="_blank"}
 * [Xiangqi.com](https://play.xiangqi.com/tournaments){:target="_blank"}
+* [Chess.com](https://www.chess.com/variants/tournaments){:target="_blank"}
