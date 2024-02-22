@@ -12,37 +12,37 @@ items:
     description: |-
       Youtube channel for Shogi by the first professional shogi player from outside Japan.
     link: https://www.youtube.com/@ShogiHarbour
-    link_text: Visit
+    link_text: Watch
     tags: Shogi
   - title: Hidetchi
     description: |-
       One of the oldest and most well known youtube channels for shogi with rule explanations, game commentary, and opening analysis.
     link: https://www.youtube.com/@HIDETCHI
-    link_text: Visit
+    link_text: Watch
     tags: Shogi
   - title: JannLeeCrazyhouse
     description: |-
       Youtube channel for Crazyhouse by one of the strongest players of the game.
     link: https://www.youtube.com/@JannLeeCrazyhouseChannel
-    link_text: Visit
+    link_text: Watch
     tags: Crazyhouse
   - title: JanggiFrance
     description: |-
       Youtube channel for Janggi by the first Western pro player.
     link: https://www.youtube.com/@janggifrance
-    link_text: Visit
+    link_text: Watch
     tags: Janggi
   - title: Xiangqi.com on Youtube
     description: |-
       Youtube channel of xiangqi.com.
     link: https://www.youtube.com/@XiangqiChineseChess
-    link_text: Visit
+    link_text: Watch
     tags: Xiangqi
   - title: PyChess on Youtube
     description: |-
       Youtube channel of PyChess about chess variants.
     link: https://www.youtube.com/@pychess
-    link_text: Visit
+    link_text: Watch
     tags: Xiangqi,Shogi,Makruk,Custom variants
   - title: Ludii
     description: |-
@@ -78,7 +78,7 @@ items:
     description: |-
       24/7 Shogi channel of Abema TV in Japanese. Broadcasts with commentary from most major professional tournaments.
     link: https://abema.tv/now-on-air/shogi
-    link_text: Visit
+    link_text: Watch
     tags: Shogi
   - title: Playshogi
     description: |-
