@@ -4,8 +4,8 @@ items:
   - title: Calendar
     icon: fa-calendar 
     description: >
-      Calendar of OTB tournaments
-    call_to_action_name: Calendar
+      Over-the-board tournaments
+    call_to_action_name: Search
     call_to_action_link: /tournaments/
   - title: Websites
     icon: fa-chess-pawn
