@@ -8,7 +8,7 @@ items:
       Biggest open source chess server, also supporting a few chess variants.
       Uses Fairy-Stockfish for chess variant analysis and play against the computer.
     link: https://www.lichess.org
-    link_text: Open lichess
+    link_text: Play
     tags: Chess,Crazyhouse,Atomic,Antichess,Three-Check,King of the Hill,Racing Kings
     github: lichess-org/lila
   - title: Chess.com
@@ -27,21 +27,21 @@ items:
       Currently is the only website where all major regional chess variants can be played and analyzed.
       Not to be confused with the PyChess GUI.
     link: https://www.pychess.org
-    link_text: Open pychess
+    link_text: Play
     tags: Chess,Xiangqi,Shogi,Janggi,Makruk,Capablanca,S-Chess,Duck
     github: gbtami/pychess-variants
   - title: Lishogi
     description: |-
       Lishogi is an open source shogi website based on lichess with a similar set of features, supporting normal playing, tournaments, studies, etc.
     link: https://www.lishogi.org
-    link_text: Open lishogi
+    link_text: Play
     tags: Shogi,Minishogi,Chu Shogi,Kyoto Shogi
     github: WandererXII/lishogi
   - title: Playstrategy
     description: |-
       Playstrategy is an open source abstract strategy game website based on lichess, supporting some chess variants and additional strategy games.
     link: https://www.playstrategy.org
-    link_text: Open playstrategy
+    link_text: Play
     tags: Chess,Shogi,Xiangqi
     github: Mind-Sports-Games/lila
   - title: PlayOk
@@ -49,35 +49,35 @@ items:
       PlayOk is a free abstract strategy strategy game website supporting a few regional chess variants.
       It has quite many players, but a rather dated interface.
     link: https://www.playok.com
-    link_text: Open PlayOk
+    link_text: Play
     tags: Chess,Shogi,Xiangqi,Makruk
   - title: 81dojo
     description: |- 
       81dojo is a free shogi website, perhaps the biggest not only available in Japanese language.
     link: https://www.81dojo.com
-    link_text: Open 81dojo
+    link_text: Play
     tags: Shogi,Minishogi,Kyoto Shogi,Gorogoro,Dobutsu
   - title: Xiangqi.com
     description: |-
       Relatively new Xiangqi website with game play and puzzles.
     link: https://www.xiangqi.com
-    link_text: Open xiangqi.com
+    link_text: Play
     tags: Xiangqi
   - title: clubxiangqi.com
     description: |-
       Clubxiangqi is a Vietnamese Xiangqi server with a fairly big and strong user base.
     link: https://www.clubxiangqi.com
-    link_text: Open clubxiangqi.com
+    link_text: Play
     tags: Xiangqi
   - title: greenchess.net
     description: |-
       Chess variant website for playing correspondence games in a large variety of variants.
     link: https://greenchess.net
-    link_text: Open greenchess.net
+    link_text: Play
     tags: Hexagonal,Three-player,Double-move
   - title: SchemingMind
     description: |-
       Chess variant website for playing correspondence games in a large variety of variants.
     link: https://www.schemingmind.com
-    link_text: Open SchemingMind
+    link_text: Play
     tags: Chess,Shatranj,Makruk,Crazyhouse,Atomic,Suicide,Losers,Three-Check,King of the Hill,Racing Kings,Alice Chess
