@@ -14,6 +14,7 @@ ALL_VARIANTS = set(('shogi', 'xiangqi', 'janggi', 'makruk'))
 FESA_URL = 'http://fesashogi.eu/index.php?mid=2'
 DXB_URL = 'http://chinaschach.de/blog/events/list/?ical=1'
 FFS_URL = 'https://shogi.fr/events/liste/?ical=1'
+SNK_URL = 'https://shogi.es/calendario/lista/?ical=1'
 TOURNEY_MOMENTUMS_URL = 'https://tourney-momentums.eu/tournaments/category/english/list/?ical=1'
 
 
@@ -90,6 +91,8 @@ def prettify_location(locations):
     locations.replace(to_replace='[^, ][^,]* \d+', value='', regex=True, inplace=True)
     # strip zip code from city
     locations.replace(to_replace=r'\d{4,6}|\d+\-\d+', value=r'', regex=True, inplace=True)
+    # lengthy names
+    locations.replace(to_replace='[^,]{30,}', value='', regex=True, inplace=True)
     # clean up by removing redundance and consolidating whitespacing
     return locations.apply(lambda x: ", ".join(dict.fromkeys(s.strip() for s in str(x or '-').split(',') if s.strip())))
 
@@ -110,6 +113,7 @@ if __name__ == '__main__':
             get_ics_calendar(TOURNEY_MOMENTUMS_URL, current.columns, ('shogi', 'xiangqi', 'janggi', 'makruk')),
             get_ics_calendar(DXB_URL, current.columns, ('xiangqi',)),
             get_ics_calendar(FFS_URL, current.columns, ('shogi',)),
+            get_ics_calendar(SNK_URL, current.columns, ('shogi',)),
             get_html_calendar(FESA_URL, current.columns),
         ])
     merged = pd.concat(calendars)
