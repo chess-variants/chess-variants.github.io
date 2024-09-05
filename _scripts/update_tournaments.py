@@ -4,6 +4,7 @@ from pathlib import Path
 from urllib.parse import urlparse
 import re
 import sys
+import warnings
 
 import icalendar
 import requests
@@ -39,20 +40,23 @@ def render_link(url):
 
 
 def get_ics_calendar(url, columns, variants):
-    ics = get_content(url)
-    gcal = icalendar.Calendar.from_ical(ics)
     tournaments = []
-    for component in gcal.walk():
-        if component.name == "VEVENT":
-            tournament_url = component.get('url') or url
-            tournaments.append([
-                component.decoded('dtstart').strftime('%Y-%m-%d'),
-                component.decoded('dtend').strftime('%Y-%m-%d'),
-                get_variant(component.get('summary'), variants),
-                component.get('location'),
-                component.get('summary'),
-                render_link(tournament_url)
-            ])
+    ics = get_content(url)
+    if ics:
+        gcal = icalendar.Calendar.from_ical(ics)
+        for component in gcal.walk():
+            if component.name == "VEVENT":
+                tournament_url = component.get('url') or url
+                tournaments.append([
+                    component.decoded('dtstart').strftime('%Y-%m-%d'),
+                    component.decoded('dtend').strftime('%Y-%m-%d'),
+                    get_variant(component.get('summary'), variants),
+                    component.get('location'),
+                    component.get('summary'),
+                    render_link(tournament_url)
+                ])
+    else:
+        warnings.warn(f'{url} does not return events')
     return pd.DataFrame(tournaments, columns=columns)
 
 
@@ -62,12 +66,12 @@ def get_html_calendar(url, columns):
     assert len(df_list) == 1
     df = df_list[-1]
     df.columns = ['Date', 'Event', 'Place', 'Info']
-    # add year
+    # add year from section headers
     year_rows = df[df.Date.str.contains('^\d+$', regex=True, na=False)]
     years = tuple((row['Date'], index) for index, row in year_rows.iterrows())
     df['Year'] = years[0][0]
     for year, i in years:
-        df['Year'][i:] = year
+        df.loc[i:, 'Year'] = year
     df = df.drop(year_rows.index, axis=0)
     # reformat date
     df = df[df['Date'] != 'Date']
@@ -113,7 +117,7 @@ if __name__ == '__main__':
             get_ics_calendar(TOURNEY_MOMENTUMS_URL, current.columns, ('shogi', 'xiangqi', 'janggi', 'makruk')),
             get_ics_calendar(DXB_URL, current.columns, ('xiangqi',)),
             get_ics_calendar(FFS_URL, current.columns, ('shogi',)),
-            # get_ics_calendar(SNK_URL, current.columns, ('shogi',)),
+            get_ics_calendar(SNK_URL, current.columns, ('shogi',)),
             get_html_calendar(FESA_URL, current.columns),
         ])
     merged = pd.concat(calendars)
