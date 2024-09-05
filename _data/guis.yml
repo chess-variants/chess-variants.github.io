@@ -57,16 +57,7 @@ items:
     subtitle: Fairy-Stockfish playground in the browser
     description: |- 
        Fairyground serves as a playground to try out Fairy-Stockfish online with custom variants, enabling game play and interactive analysis.
-    link: https://fairyground.vercel.app/ 
-    link_text: Open fairyground 
-    tags: Custom variants 
+    link: https://fairyground.vercel.app/
+    link_text: Open fairyground
+    tags: Custom variants,Shogi,Xiangqi,Janggi,Makruk
     github: ianfab/fairyground
-  - title: FairyFishGUI
-    description: |- 
-       FairyFishGUI is a generic GUI for Fairy-Stockfish which by design supports all variants Fairy-Stockfish supports,
-       including all user-defined variants. It is very minimalistic and mainly meant as a simple fallback solution for variants
-       where no other chess variant GUI exist.
-    link: https://github.com/fairy-stockfish/FairyFishGUI           
-    link_text: Download FairyFishGUI
-    tags: Custom variants 
-    github: fairy-stockfish/FairyFishGUI
