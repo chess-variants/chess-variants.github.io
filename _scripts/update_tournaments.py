@@ -12,7 +12,7 @@ import pandas as pd
 
 
 ALL_VARIANTS = set(('shogi', 'xiangqi', 'janggi', 'makruk'))
-FESA_URL = 'http://fesashogi.eu/index.php?mid=2'
+FESA_URL = 'https://fesashogi.eu/calendar/'
 DXB_URL = 'http://chinaschach.de/blog/events/list/?ical=1'
 FFS_URL = 'https://shogi.fr/events/liste/?ical=1'
 SNK_URL = 'https://shogi.es/calendario/lista/?ical=1'
@@ -61,6 +61,7 @@ def get_ics_calendar(url, columns, variants):
 
 
 def get_html_calendar(url, columns):
+    # TODO: rewrite for new website
     html = get_content(url)
     df_list = pd.read_html(html, flavor='lxml')
     assert len(df_list) == 1
@@ -118,7 +119,7 @@ if __name__ == '__main__':
             get_ics_calendar(DXB_URL, current.columns, ('xiangqi',)),
             get_ics_calendar(FFS_URL, current.columns, ('shogi',)),
             get_ics_calendar(SNK_URL, current.columns, ('shogi',)),
-            get_html_calendar(FESA_URL, current.columns),
+            #get_html_calendar(FESA_URL, current.columns),
         ])
     merged = pd.concat(calendars)
     # try to remove street names, zip codes, and redundancy in location
