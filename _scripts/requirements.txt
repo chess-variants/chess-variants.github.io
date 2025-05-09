@@ -2,3 +2,4 @@ icalendar
 lxml
 pandas
 requests
+beautifulsoup4

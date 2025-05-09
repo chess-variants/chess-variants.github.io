@@ -9,6 +9,7 @@ import warnings
 import icalendar
 import requests
 import pandas as pd
+from bs4 import BeautifulSoup
 
 
 ALL_VARIANTS = set(('shogi', 'xiangqi', 'janggi', 'makruk'))
@@ -61,33 +62,38 @@ def get_ics_calendar(url, columns, variants):
 
 
 def get_html_calendar(url, columns):
-    # TODO: rewrite for new website
     html = get_content(url)
-    df_list = pd.read_html(html, flavor='lxml')
-    assert len(df_list) == 1
-    df = df_list[-1]
-    df.columns = ['Date', 'Event', 'Place', 'Info']
-    # add year from section headers
-    year_rows = df[df.Date.str.contains('^\d+$', regex=True, na=False)]
-    years = tuple((row['Date'], index) for index, row in year_rows.iterrows())
-    df['Year'] = years[0][0]
-    for year, i in years:
-        df.loc[i:, 'Year'] = year
-    df = df.drop(year_rows.index, axis=0)
-    # reformat date
-    df = df[df['Date'] != 'Date']
-    df = df[df['Date'].notna()]
-    df[['Start', 'End']] = df['Date'].str.split('-', expand=True)
-    df['End'] = df.End.combine_first(df.Start)
-    def reformat_date(row, col):
-        return datetime.datetime.strptime(row[col].strip(), '%d %b').replace(year=int(row['Year'])).strftime('%Y-%m-%d')
-    df['Start'] = df.apply(lambda r: reformat_date(r, 'Start'), axis=1)
-    df['End'] = df.apply(lambda r: reformat_date(r, 'End'), axis=1)
-    # add additional info
-    df['Source'] = render_link(url)
-    df['Variant'] = 'Shogi'
-    df = df[['Start', 'End', 'Variant', 'Place', 'Event', 'Source']]
-    df.columns = columns
+    soup = BeautifulSoup(html, 'lxml')
+
+    # Locate the container for upcoming tournaments
+    container = soup.find('div', {'id': 'brxe-rxlvcv'})
+    if not container:
+        raise ValueError(f"No calendar data found on the page at {url}")
+
+    # Extract rows for each tournament
+    rows = container.find_all('div', class_='brxe-jbzoch')
+    data = []
+
+    for row in rows:
+        # Extract start and end dates
+        start_date = row.find('div', class_='brxe-tbyczs').text.strip()
+        end_date = row.find('div', class_='brxe-lvnbjn').text.strip()
+
+        # Extract event name
+        event_name = row.find('div', class_='brxe-vzpxtn').text.strip()
+
+        # Extract location
+        location = row.find('div', class_='brxe-tdutfx').text.strip()
+
+        # Format dates
+        start = datetime.datetime.strptime(start_date, '%d.%m.%Y').strftime('%Y-%m-%d')
+        end = datetime.datetime.strptime(end_date, '%d.%m.%Y').strftime('%Y-%m-%d')
+
+        # Append the extracted data
+        data.append([start, end, 'Shogi', location, event_name, render_link(url)])
+
+    # Create DataFrame
+    df = pd.DataFrame(data, columns=columns)
     return df
 
 
@@ -119,7 +125,7 @@ if __name__ == '__main__':
             get_ics_calendar(DXB_URL, current.columns, ('xiangqi',)),
             get_ics_calendar(FFS_URL, current.columns, ('shogi',)),
             get_ics_calendar(SNK_URL, current.columns, ('shogi',)),
-            #get_html_calendar(FESA_URL, current.columns),
+            get_html_calendar(FESA_URL, current.columns),
         ])
     merged = pd.concat(calendars)
     # try to remove street names, zip codes, and redundancy in location
