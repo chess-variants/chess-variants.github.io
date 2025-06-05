@@ -121,7 +121,7 @@ if __name__ == '__main__':
     ]
     if not args.offline:
         calendars.extend([
-            get_ics_calendar(TOURNEY_MOMENTUMS_URL, current.columns, ('shogi', 'xiangqi', 'janggi', 'makruk')),
+            #get_ics_calendar(TOURNEY_MOMENTUMS_URL, current.columns, ('shogi', 'xiangqi', 'janggi', 'makruk')),
             get_ics_calendar(DXB_URL, current.columns, ('xiangqi',)),
             get_ics_calendar(FFS_URL, current.columns, ('shogi',)),
             get_ics_calendar(SNK_URL, current.columns, ('shogi',)),
