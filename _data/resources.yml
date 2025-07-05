@@ -28,7 +28,7 @@ items:
     tags: Crazyhouse
   - title: JanggiFrance
     description: |-
-      Youtube channel for Janggi by the first Western pro player.
+      Youtube channel for Janggi by the first European pro player.
     link: https://www.youtube.com/@janggifrance
     link_text: Watch
     tags: Janggi
@@ -110,9 +110,3 @@ items:
     link: http://chinaschach.de/blog/
     link_text: Visit
     tags: Xiangqi
-  - title: Tourney momentums
-    description: |-
-      Chess variant tournament calendar.
-    link: https://tourney-momentums.eu/tournaments/
-    link_text: Visit
-    tags: Shogi,Xiangqi,Janggi,Makruk
