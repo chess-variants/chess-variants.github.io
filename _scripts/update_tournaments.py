@@ -76,18 +76,41 @@ def get_html_calendar(url, columns):
 
     for row in rows:
         # Extract start and end dates
-        start_date = row.find('div', class_='brxe-tbyczs').text.strip()
-        end_date = row.find('div', class_='brxe-lvnbjn').text.strip()
+        start_date_elem = row.find('div', class_='brxe-tbyczs')
+        end_date_elem = row.find('div', class_='brxe-lvnbjn')
+        
+        # Get text content or empty string if element not found
+        start_date = start_date_elem.text.strip() if start_date_elem else ''
+        end_date = end_date_elem.text.strip() if end_date_elem else ''
+
+        # Skip rows with missing start dates
+        if not start_date:
+            continue
 
         # Extract event name
-        event_name = row.find('div', class_='brxe-vzpxtn').text.strip()
+        event_name_elem = row.find('div', class_='brxe-vzpxtn')
+        event_name = event_name_elem.text.strip() if event_name_elem else ''
 
         # Extract location
-        location = row.find('div', class_='brxe-tdutfx').text.strip()
+        location_elem = row.find('div', class_='brxe-tdutfx')
+        location = location_elem.text.strip() if location_elem else ''
 
         # Format dates
-        start = datetime.datetime.strptime(start_date, '%d.%m.%Y').strftime('%Y-%m-%d')
-        end = datetime.datetime.strptime(end_date, '%d.%m.%Y').strftime('%Y-%m-%d')
+        try:
+            start = datetime.datetime.strptime(start_date, '%d.%m.%Y').strftime('%Y-%m-%d')
+        except ValueError:
+            # Skip rows with invalid start date format
+            continue
+            
+        # If end_date is missing or empty, treat as single-day event
+        if not end_date:
+            end = start
+        else:
+            try:
+                end = datetime.datetime.strptime(end_date, '%d.%m.%Y').strftime('%Y-%m-%d')
+            except ValueError:
+                # If end_date format is invalid, treat as single-day event
+                end = start
 
         # Append the extracted data
         data.append([start, end, 'Shogi', location, event_name, render_link(url)])
@@ -99,7 +122,7 @@ def get_html_calendar(url, columns):
 
 def prettify_location(locations):
     # street names
-    locations.replace(to_replace='[^, ][^,]* \d+', value='', regex=True, inplace=True)
+    locations.replace(to_replace=r'[^, ][^,]* \d+', value='', regex=True, inplace=True)
     # strip zip code from city
     locations.replace(to_replace=r'\d{4,6}|\d+\-\d+', value=r'', regex=True, inplace=True)
     # lengthy names
