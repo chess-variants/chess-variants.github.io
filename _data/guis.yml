@@ -21,7 +21,7 @@ items:
   - title: Cutechess
     description: |-
       Cutechess mainly a chess (variant) engine tournament manager, with both a command line and a graphical user interface.
-      Also supportd game play against engines, but does not have analysis features.
+      Also supports game play against engines, but does not have analysis features.
     link: https://github.com/cutechess/cutechess
     link_text: Download Cutechess
     tags: Chess,Shogi,Makruk,Crazyhouse,Atomic,Antichess,Horde,Three-Check,King of the Hill,Racing Kings,S-Chess,Berolina
