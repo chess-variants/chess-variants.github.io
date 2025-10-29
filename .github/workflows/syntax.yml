@@ -10,7 +10,7 @@ jobs:
   validate-yaml:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: yamllint
         run: |
           yamllint -d "{extends: relaxed, rules: {trailing-spaces: {level: warning}, new-line-at-end-of-file: {level: warning}}}" _data/
@@ -18,7 +18,7 @@ jobs:
   validate-tsv:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: csvlint
         uses: kcheriyath/csvlinter@V0.6.0
         with:
