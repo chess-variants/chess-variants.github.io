@@ -7,11 +7,14 @@ Checks links in guis.yml, engines.yml, resources.yml, and servers.yml.
 import yaml
 import requests
 import sys
+import time
 from pathlib import Path
 from typing import List, Dict, Tuple
 
 # Configuration
 TIMEOUT = 10  # seconds
+MAX_RETRIES = 3  # number of attempts before marking as failed
+RETRY_DELAY = 2  # seconds between retries
 FILES_TO_CHECK = ['guis.yml', 'engines.yml', 'resources.yml', 'servers.yml']
 DATA_DIR = Path('_data')
 
@@ -69,40 +72,54 @@ def is_antibot_response(response: requests.Response) -> bool:
 
     return False
 
-def check_url(url: str) -> Tuple[bool, str]:
+def check_url(url: str, attempt: int = 1) -> Tuple[bool, str]:
     """
-    Check if a URL is accessible.
+    Check if a URL is accessible with retry logic.
 
     Args:
         url: The URL to check
+        attempt: Current attempt number (used for retry tracking)
 
     Returns:
         Tuple of (success, error_message)
     """
-    try:
-        response = requests.head(url, timeout=TIMEOUT, allow_redirects=True)
-        # If HEAD doesn't work, try GET
-        if response.status_code >= 400:
-            response = requests.get(url, timeout=TIMEOUT, allow_redirects=True)
+    last_error = ""
 
-        # Check for anti-bot protection
-        if is_antibot_response(response):
-            return True, "Anti-bot protection detected (human-accessible)"
+    for current_attempt in range(attempt, MAX_RETRIES + 1):
+        try:
+            response = requests.head(url, timeout=TIMEOUT, allow_redirects=True)
+            # If HEAD doesn't work, try GET
+            if response.status_code >= 400:
+                response = requests.get(url, timeout=TIMEOUT, allow_redirects=True)
 
-        if response.status_code < 400:
-            return True, ""
-        else:
-            return False, f"HTTP {response.status_code}"
-    except requests.exceptions.Timeout:
-        return False, "Timeout"
-    except requests.exceptions.ConnectionError:
-        return False, "Connection error"
-    except requests.exceptions.TooManyRedirects:
-        return False, "Too many redirects"
-    except requests.exceptions.RequestException as e:
-        return False, f"Request error: {str(e)}"
-    except Exception as e:
-        return False, f"Unexpected error: {str(e)}"
+            # Check for anti-bot protection (treat as success, no retry needed)
+            if is_antibot_response(response):
+                return True, "Anti-bot protection detected (human-accessible)"
+
+            if response.status_code < 400:
+                if current_attempt > 1:
+                    print(f"    ✓ OK (succeeded on attempt {current_attempt})")
+                return True, ""
+            else:
+                last_error = f"HTTP {response.status_code}"
+        except requests.exceptions.Timeout:
+            last_error = "Timeout"
+        except requests.exceptions.ConnectionError:
+            last_error = "Connection error"
+        except requests.exceptions.TooManyRedirects:
+            last_error = "Too many redirects"
+        except requests.exceptions.RequestException as e:
+            last_error = f"Request error: {str(e)}"
+        except Exception as e:
+            last_error = f"Unexpected error: {str(e)}"
+
+        # If this wasn't the last attempt, wait before retrying
+        if current_attempt < MAX_RETRIES:
+            print(f"    ⟳ Attempt {current_attempt} failed ({last_error}), retrying...")
+            time.sleep(RETRY_DELAY)
+
+    # All retries exhausted
+    return False, f"{last_error} (failed after {MAX_RETRIES} attempts)"
 
 def extract_links(data: Dict) -> List[Tuple[str, str, str]]:
     """
