@@ -32,10 +32,11 @@ jobs:
           python _scripts/verify_links.py 2>&1 | tee link-verification-report.txt
           exit ${PIPESTATUS[0]}
 
-      - name: Upload failure report
-        if: failure()
-        uses: actions/upload-artifact@v4
-        with:
-          name: link-verification-report
-          path: link-verification-report.txt
-          retention-days: 30
+      - name: Add report to job summary
+        if: always()
+        run: |
+          echo "# Link Verification Report" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
+          cat link-verification-report.txt >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
