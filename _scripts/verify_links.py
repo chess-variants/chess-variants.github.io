@@ -15,6 +15,60 @@ TIMEOUT = 10  # seconds
 FILES_TO_CHECK = ['guis.yml', 'engines.yml', 'resources.yml', 'servers.yml']
 DATA_DIR = Path('_data')
 
+def is_antibot_response(response: requests.Response) -> bool:
+    """
+    Detect if a response is from an anti-bot protection service.
+
+    Args:
+        response: The HTTP response object
+
+    Returns:
+        True if anti-bot protection is detected, False otherwise
+    """
+    headers = response.headers
+
+    # Cloudflare challenge indicators
+    if 'cf-mitigated' in headers and 'challenge' in headers.get('cf-mitigated', '').lower():
+        return True
+
+    # Cloudflare with 403 and specific headers
+    if response.status_code == 403 and 'server' in headers:
+        server = headers.get('server', '').lower()
+        if 'cloudflare' in server:
+            # Look for additional Cloudflare challenge indicators
+            if any(h in headers for h in ['cf-ray', 'cf-request-id', 'cf-mitigated']):
+                return True
+
+    # Generic anti-bot/challenge detection
+    if response.status_code in [403, 429]:
+        # Check for common anti-bot headers and patterns
+        antibot_indicators = [
+            'challenge',
+            'captcha',
+            'bot-protection',
+            'human-verification',
+            'security-check'
+        ]
+
+        # Check headers for anti-bot indicators
+        for header_name, header_value in headers.items():
+            header_lower = header_name.lower()
+            value_lower = str(header_value).lower()
+
+            if any(indicator in header_lower or indicator in value_lower
+                   for indicator in antibot_indicators):
+                return True
+
+        # Check for unusual security headers that often accompany challenges
+        security_headers = ['cross-origin-embedder-policy', 'cross-origin-opener-policy']
+        restrictive_perms = 'permissions-policy' in headers and len(headers['permissions-policy']) > 200
+
+        if response.status_code == 403 and len([h for h in security_headers if h in headers]) >= 2:
+            if restrictive_perms or 'cf-ray' in headers:
+                return True
+
+    return False
+
 def check_url(url: str) -> Tuple[bool, str]:
     """
     Check if a URL is accessible.
@@ -30,6 +84,10 @@ def check_url(url: str) -> Tuple[bool, str]:
         # If HEAD doesn't work, try GET
         if response.status_code >= 400:
             response = requests.get(url, timeout=TIMEOUT, allow_redirects=True)
+
+        # Check for anti-bot protection
+        if is_antibot_response(response):
+            return True, "Anti-bot protection detected (human-accessible)"
 
         if response.status_code < 400:
             return True, ""
@@ -98,18 +156,21 @@ def verify_file_links(file_path: Path) -> List[Dict[str, str]]:
 
     for title, field, url in links:
         print(f"  Checking {title} ({field}): {url}")
-        success, error = check_url(url)
+        success, message = check_url(url)
 
         if success:
-            print(f"    ✓ OK")
+            if message:
+                print(f"    ✓ OK - {message}")
+            else:
+                print(f"    ✓ OK")
         else:
-            print(f"    ✗ FAILED: {error}")
+            print(f"    ✗ FAILED: {message}")
             failed_links.append({
                 'file': file_path.name,
                 'title': title,
                 'field': field,
                 'url': url,
-                'error': error
+                'error': message
             })
 
     return failed_links
