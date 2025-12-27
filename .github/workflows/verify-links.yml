@@ -1,0 +1,41 @@
+name: Verify External Links
+
+on:
+  # Run on the first day of every month at 00:00 UTC
+  schedule:
+    - cron: '0 0 1 * *'
+
+  # Allow manual trigger
+  workflow_dispatch:
+
+jobs:
+  verify-links:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: |
+          pip install -r _scripts/requirements.txt
+
+      - name: Verify links
+        id: verify
+        run: |
+          python _scripts/verify_links.py
+
+      - name: Upload failure report
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: link-verification-report
+          path: |
+            _scripts/verify_links.py
+          retention-days: 30
