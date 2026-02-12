@@ -1,6 +1,10 @@
 name: Verify External Links
 
 on:
+  # Run on pull requests targeting main
+  pull_request:
+    branches: [ main ]
+
   # Run on the first day of every month at 00:00 UTC
   schedule:
     - cron: '0 0 1 * *'
