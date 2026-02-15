@@ -3,7 +3,7 @@ layout: page
 title: Tournaments
 ---
 
-{% include table.html data=site.data.tournaments %}
+{% include calendar.html data=site.data.tournaments group_by_month=true month_key="start-date" %}
 
 The following chess variant calendars are automatically mirrored to the above table:
 * [FESA (European Shogi Association)](https://fesashogi.eu/calendar/){:target="_blank"} (Shogi)

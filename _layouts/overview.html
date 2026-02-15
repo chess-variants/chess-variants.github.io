@@ -9,7 +9,7 @@ layout: page
 This is a summary page for {{ page.tag }}. See the respective main pages for a variant independent overview.
 
 {{ "## Tournaments" | markdownify }}
-{% include table.html data=site.data.tournaments key="variant" value=page.tag %}
+{% include calendar.html data=site.data.tournaments key="variant" value=page.tag group_by_month=true month_key="start-date" %}
 
 {{ "## Servers" | markdownify }}
 {% include showcase-items.html items=site.data.servers.items tag=page.tag %}

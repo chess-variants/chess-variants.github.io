@@ -2,3 +2,23 @@
 ---
 // Import Main CSS file from theme
 @import "main";
+
+.calendar-table thead th {
+  font-weight: 700;
+  text-transform: capitalize;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  background-color: #eef2f7;
+  border-bottom: 2px solid #d1d5db;
+}
+
+.calendar-table th:first-child,
+.calendar-table td:first-child {
+  white-space: nowrap;
+}
+
+.month-separator td {
+  font-weight: 700;
+  background-color: #f3f4f6;
+  border-top: 2px solid #d1d5db;
+}

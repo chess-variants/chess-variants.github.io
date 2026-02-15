@@ -1,0 +1,79 @@
+<table class="calendar-table">
+  {% if include.caption %}
+  <caption>{{ include.caption }}</caption>
+  {% endif %}
+
+  {% if include.data and include.data.size > 0 %}
+  <thead>
+    <tr>
+    {% for column in include.data[0] %}
+      {% assign header_key = column[0] %}
+      {% if header_key != "end-date" %}
+        {% if header_key == "start-date" %}
+          <th>Date</th>
+        {% else %}
+          {% assign header_label = header_key | replace: "-", " " | replace: "_", " " %}
+          <th>{{ header_label }}</th>
+        {% endif %}
+      {% endif %}
+    {% endfor %}
+    </tr>
+  </thead>
+  <tbody>
+  {% assign col_count = include.data[0].size %}
+  {% if include.data[0]["end-date"] %}
+    {% assign col_count = col_count | minus: 1 %}
+  {% endif %}
+  {% assign month_key = include.month_key | default: "start-date" %}
+  {% assign last_month = "" %}
+
+  {% for spec in include.data %}
+    {% if include.key == nil or spec[include.key] == include.value %}
+      {% assign show_month_header = false %}
+      {% if include.group_by_month and spec[month_key] %}
+        {% assign current_month = spec[month_key] | date: "%Y-%m" %}
+        {% if current_month != last_month %}
+          {% assign show_month_header = true %}
+          {% assign last_month = current_month %}
+        {% endif %}
+      {% endif %}
+
+      {% if show_month_header %}
+      <tr class="month-separator">
+        <td colspan="{{ col_count }}">{{ spec[month_key] | date: "%B %Y" }}</td>
+      </tr>
+      {% endif %}
+
+      <tr>
+      {% for value in spec %}
+        {% assign cell_key = value[0] %}
+        {% assign cell_value = value[1] %}
+        {% if cell_key == "start-date" and spec["start-date"] %}
+          {% assign end_date = spec["end-date"] | default: spec["start-date"] %}
+          {% assign start_key = spec["start-date"] | date: "%Y-%m-%d" %}
+          {% assign end_key = end_date | date: "%Y-%m-%d" %}
+          {% assign start_month = spec["start-date"] | date: "%Y-%m" %}
+          {% assign end_month = end_date | date: "%Y-%m" %}
+          {% assign start_year = spec["start-date"] | date: "%Y" %}
+          {% assign end_year = end_date | date: "%Y" %}
+          {% if start_key == end_key %}
+            <td>{{ spec["start-date"] | date: "%-d %b" }}</td>
+          {% elsif start_month == end_month %}
+            <td>{{ spec["start-date"] | date: "%-d" }}-{{ end_date | date: "%-d %b" }}</td>
+          {% elsif start_year == end_year %}
+            <td>{{ spec["start-date"] | date: "%-d %b" }}-{{ end_date | date: "%-d %b" }}</td>
+          {% else %}
+            <td>{{ spec["start-date"] | date: "%-d %b %Y" }}-{{ end_date | date: "%-d %b %Y" }}</td>
+          {% endif %}
+        {% elsif cell_key == "end-date" %}
+          
+        {% else %}
+          <td>{{ cell_value }}</td>
+        {% endif %}
+      {% endfor %}
+      </tr>
+    {% endif %}
+  {% endfor %}
+  </tbody>
+  {% endif %}
+</table>
