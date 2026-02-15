@@ -5,7 +5,7 @@
 - Prefer small, targeted edits over broad rewrites.
 - Keep content updates in `_data/` whenever practical.
 - Validate links and markdown when workflows/tools exist for it.
-- Do not publish this file as a page (`_config.yml` excludes it).
+- exclude files in `_config.yml` that are not supposed to be part of the website.
 
 Repository context:
 - Jekyll site deployed via GitHub Pages and bulma simple theme https://github.com/ianfab/bulma-simple-theme.

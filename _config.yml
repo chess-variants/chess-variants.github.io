@@ -60,6 +60,7 @@ exclude:
   - _scripts/
   - README.md
   - AGENTS.md
+  - docker-compose.yml
 #   - .sass-cache/
 #   - .jekyll-cache/
 #   - gemfiles/

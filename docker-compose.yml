@@ -1,0 +1,18 @@
+services:
+  jekyll:
+    image: ruby:3.1
+    working_dir: /srv/jekyll
+    command: >
+      bash -lc "cp Gemfile /tmp/Gemfile &&
+      cp Gemfile.lock /tmp/Gemfile.lock &&
+      echo 'gem \"webrick\", \"~> 1.8\"' >> /tmp/Gemfile &&
+      BUNDLE_GEMFILE=/tmp/Gemfile bundle install &&
+      BUNDLE_GEMFILE=/tmp/Gemfile bundle exec jekyll serve --host 0.0.0.0 --port 4000"
+    ports:
+      - "4000:4000"
+    volumes:
+      - .:/srv/jekyll
+      - bundle_cache:/usr/local/bundle
+
+volumes:
+  bundle_cache:
