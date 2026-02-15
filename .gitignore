@@ -6,3 +6,4 @@ vendor
 _scripts/venv
 __pycache__/
 *.pyc
+.bundle/

@@ -58,6 +58,8 @@ collections:
 #
 exclude:
   - _scripts/
+  - README.md
+  - AGENTS.md
 #   - .sass-cache/
 #   - .jekyll-cache/
 #   - gemfiles/
