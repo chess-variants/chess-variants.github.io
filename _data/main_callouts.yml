@@ -5,7 +5,7 @@ items:
     icon: fa-calendar 
     description: >
       Over-the-board tournaments
-    call_to_action_name: Search
+    call_to_action_name: View
     call_to_action_link: /tournaments/
   - title: Websites
     icon: fa-chess-pawn
@@ -29,7 +29,7 @@ items:
     icon: fa-chess-board
     description: >
       Graphical user interfaces for chess variants 
-    call_to_action_name: Download
+    call_to_action_name: Install
     call_to_action_link: /guis/
   - title: Engines
     icon: fa-cogs
