@@ -78,9 +78,14 @@ def get_ics_calendar(url, columns, variants):
         for component in gcal.walk():
             if component.name == "VEVENT":
                 tournament_url = component.get('url') or url
+                dtend = component.decoded('dtend')
+                # iCalendar uses exclusive end dates for all-day (DATE) events,
+                # so subtract one day to get the actual inclusive last day.
+                if type(dtend) is datetime.date:
+                    dtend = dtend - datetime.timedelta(days=1)
                 tournaments.append([
                     component.decoded('dtstart').strftime('%Y-%m-%d'),
-                    component.decoded('dtend').strftime('%Y-%m-%d'),
+                    dtend.strftime('%Y-%m-%d'),
                     get_variant(component.get('summary'), variants),
                     component.get('location'),
                     component.get('summary'),
