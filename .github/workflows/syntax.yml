@@ -20,7 +20,7 @@ jobs:
     steps:
       - uses: actions/checkout@v6
       - name: csvlint
-        uses: kcheriyath/csvlinter@V0.6.0
+        uses: kcheriyath/csvlinter@V0.7.0
         with:
           find_pattern: "*.tsv"
           find_path: "_data"
