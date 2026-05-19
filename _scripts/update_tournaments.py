@@ -17,7 +17,6 @@ FESA_URL = 'https://fesashogi.eu/calendar/'
 DXB_URL = 'http://chinaschach.de/blog/events/list/?ical=1'
 FFS_URL = 'https://shogi.fr/events/liste/?ical=1'
 SNK_URL = 'https://shogi.es/calendario/lista/?ical=1'
-TOURNEY_MOMENTUMS_URL = 'https://tourney-momentums.eu/tournaments/category/english/list/?ical=1'
 SHOGIBOND_URL = 'https://shogibond.nl/toernooien/'
 
 DUTCH_MONTHS = {
@@ -286,7 +285,6 @@ if __name__ == '__main__':
     ]
     if not args.offline:
         calendars.extend([
-            #get_ics_calendar(TOURNEY_MOMENTUMS_URL, current.columns, ('shogi', 'xiangqi', 'janggi', 'makruk')),
             get_ics_calendar(DXB_URL, current.columns, ('xiangqi',)),
             get_ics_calendar(FFS_URL, current.columns, ('shogi',)),
             get_ics_calendar(SNK_URL, current.columns, ('shogi',)),
@@ -299,8 +297,9 @@ if __name__ == '__main__':
     # filter past and duplicate events
     if not args.unfiltered:
         merged = merged[merged['end-date'] >= datetime.datetime.today().strftime('%Y-%m-%d')]
+        # filter duplicates e.g. due to updated metadata
         merged.drop_duplicates(subset=('start-date', 'variant', 'tournament'), keep='last', inplace=True)
-        # do some more fuzzy matching
+        # do some more fuzzy matching e.g. from different sources
         merged['location2'] = merged['location'].apply(lambda s: re.match(r'^\w*', s).group())
         merged.drop_duplicates(subset=('start-date', 'end-date', 'variant', 'location2'), keep='last', inplace=True)
         merged = merged.drop(columns=['location2'])
