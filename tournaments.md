@@ -11,5 +11,6 @@ The following chess variant calendars are automatically mirrored to the above ta
 * [FFS (Fédération Française de Shogi)](https://shogi.fr/events/liste/){:target="_blank"} (Shogi)
 * [Shogi no kokoro (shogi.es)](https://shogi.es/calendario/lista/){:target="_blank"} (Shogi)
 * [Nederlandse Shogi Bond](https://shogibond.nl/toernooien/){:target="_blank"} (Shogi)
+* [Shogi Deutschland](https://shogideutschland.de/Termine.html){:target="_blank"} (Shogi)
 
 If you would like to add a tournament, please edit the [tournament list on Github](https://github.com/chess-variants/chess-variants.github.io/blob/main/_data/tournaments.tsv){:target="_blank"} or [send an email](mailto:chessvariantinfo@gmail.com).

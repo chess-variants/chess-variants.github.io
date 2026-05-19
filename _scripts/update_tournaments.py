@@ -1,9 +1,10 @@
 import argparse
 import datetime
 from pathlib import Path
-from urllib.parse import urlparse
+from urllib.parse import urljoin, urlparse
 import re
 import sys
+import unicodedata
 import warnings
 
 import icalendar
@@ -18,6 +19,7 @@ DXB_URL = 'http://chinaschach.de/blog/events/list/?ical=1'
 FFS_URL = 'https://shogi.fr/events/liste/?ical=1'
 SNK_URL = 'https://shogi.es/calendario/lista/?ical=1'
 SHOGIBOND_URL = 'https://shogibond.nl/toernooien/'
+SHOGI_DEUTSCHLAND_URL = 'https://shogideutschland.de/Termine.html'
 
 DUTCH_MONTHS = {
     'jan': 1,
@@ -46,6 +48,36 @@ DUTCH_MONTHS = {
     'november': 11,
     'dec': 12,
     'december': 12,
+}
+
+GERMAN_MONTHS = {
+    'jan': 1,
+    'januar': 1,
+    'feb': 2,
+    'februar': 2,
+    'mär': 3,
+    'märz': 3,
+    'maerz': 3,
+    'mar': 3,
+    'mrz': 3,
+    'apr': 4,
+    'april': 4,
+    'mai': 5,
+    'jun': 6,
+    'juni': 6,
+    'jul': 7,
+    'juli': 7,
+    'aug': 8,
+    'august': 8,
+    'sep': 9,
+    'sept': 9,
+    'september': 9,
+    'okt': 10,
+    'oktober': 10,
+    'nov': 11,
+    'november': 11,
+    'dez': 12,
+    'dezember': 12,
 }
 
 
@@ -95,7 +127,7 @@ def get_ics_calendar(url, columns, variants):
     return pd.DataFrame(tournaments, columns=columns)
 
 
-def get_html_calendar(url, columns):
+def get_fesa_calendar(url, columns):
     html = get_content(url)
     soup = BeautifulSoup(html, 'lxml')
 
@@ -261,6 +293,96 @@ def get_shogibond_calendar(url, columns):
     return pd.DataFrame(tournaments, columns=columns)
 
 
+def parse_german_date_cell(value):
+    clean = value.replace('\xa0', ' ').strip().lower()
+    clean = clean.replace('–', '-').replace('—', '-')
+    clean = re.sub(r'\s+', ' ', clean)
+
+    def month_of(name):
+        key = name.strip().strip('.').lower()
+        return GERMAN_MONTHS.get(key)
+
+    def build_date(year, month_name, day):
+        month = month_of(month_name)
+        if not month:
+            return None
+        return datetime.date(int(year), month, int(day))
+
+    parsed = None
+    single_day = re.match(r'^(\d{1,2})\.\s+([a-zäöüß.]+)\s+(20\d{2})$', clean)
+    same_month_range = re.match(r'^(\d{1,2})\.\s*(?:[-+]|bis)\s*(\d{1,2})\.\s+([a-zäöüß.]+)\s+(20\d{2})$', clean)
+    explicit_month_range = re.match(r'^(\d{1,2})\.\s+([a-zäöüß.]+)\s*-\s*(\d{1,2})\.\s+([a-zäöüß.]+)\s+(20\d{2})$', clean)
+
+    try:
+        if single_day:
+            day, month_name, year = single_day.groups()
+            day_date = build_date(year, month_name, day)
+            if day_date:
+                parsed = (day_date, day_date)
+        elif same_month_range:
+            day1, day2, month_name, year = same_month_range.groups()
+            start = build_date(year, month_name, day1)
+            end = build_date(year, month_name, day2)
+            if start and end:
+                parsed = (start, end)
+        elif explicit_month_range:
+            day1, month1_name, day2, month2_name, year = explicit_month_range.groups()
+            start = build_date(year, month1_name, day1)
+            end = build_date(year, month2_name, day2)
+            if start and end:
+                if end < start:
+                    end = datetime.date(end.year + 1, end.month, end.day)
+                parsed = (start, end)
+    except ValueError:
+        parsed = None
+
+    if parsed:
+        return parsed[0].strftime('%Y-%m-%d'), parsed[1].strftime('%Y-%m-%d')
+    return None
+
+
+def get_shogideutschland_calendar(url, columns):
+    html = get_content(url)
+    soup = BeautifulSoup(html, 'lxml')
+    tournaments = []
+
+    for date_elem in soup.find_all('span', class_='termin'):
+        date_text = date_elem.get_text(' ', strip=True)
+        parsed_dates = parse_german_date_cell(date_text)
+        if not parsed_dates:
+            continue
+
+        location_text = date_elem.parent.get_text(' ', strip=True)
+        location = location_text.replace(date_text, '', 1).strip()
+        event_cell = date_elem.parent.find_next_sibling('td')
+        if not event_cell:
+            continue
+
+        title_elem = event_cell.find('span', class_='ueber1')
+        if not title_elem:
+            continue
+
+        description = event_cell.get_text(' ', strip=True).lower()
+        if any(marker in description for marker in ('fällt leider aus', 'faellt leider aus', 'abgesagt')):
+            continue
+
+        info_url = url
+        info_link = event_cell.find('a', href=True)
+        if info_link:
+            info_url = urljoin(url, info_link.get('href'))
+
+        tournaments.append([
+            parsed_dates[0],
+            parsed_dates[1],
+            'Shogi',
+            location,
+            title_elem.get_text(' ', strip=True),
+            render_link(info_url)
+        ])
+
+    return pd.DataFrame(tournaments, columns=columns)
+
+
 def prettify_location(locations):
     # street names
     locations.replace(to_replace=r'[^, ][^,]* \d+', value='', regex=True, inplace=True)
@@ -270,6 +392,13 @@ def prettify_location(locations):
     locations.replace(to_replace='[^,]{30,}', value='', regex=True, inplace=True)
     # clean up by removing redundance and consolidating whitespacing
     return locations.apply(lambda x: ", ".join(dict.fromkeys(s.strip() for s in str(x or '-').split(',') if s.strip())))
+
+
+def normalize_tournament_name(name):
+    text = unicodedata.normalize('NFKD', str(name or ''))
+    text = ''.join(c for c in text if not unicodedata.combining(c))
+    text = re.sub(r'\W+', '', text.lower())
+    return text
 
 
 if __name__ == '__main__':
@@ -288,8 +417,9 @@ if __name__ == '__main__':
             get_ics_calendar(DXB_URL, current.columns, ('xiangqi',)),
             get_ics_calendar(FFS_URL, current.columns, ('shogi',)),
             get_ics_calendar(SNK_URL, current.columns, ('shogi',)),
-            get_html_calendar(FESA_URL, current.columns),
             get_shogibond_calendar(SHOGIBOND_URL, current.columns),
+            get_shogideutschland_calendar(SHOGI_DEUTSCHLAND_URL, current.columns),
+            get_fesa_calendar(FESA_URL, current.columns),
         ])
     merged = pd.concat(calendars)
     # try to remove street names, zip codes, and redundancy in location
@@ -299,6 +429,10 @@ if __name__ == '__main__':
         merged = merged[merged['end-date'] >= datetime.datetime.today().strftime('%Y-%m-%d')]
         # filter duplicates e.g. due to updated metadata
         merged.drop_duplicates(subset=('start-date', 'variant', 'tournament'), keep='last', inplace=True)
+        # catch minor spelling/accent differences across sources
+        merged['tournament2'] = merged['tournament'].apply(normalize_tournament_name)
+        merged.drop_duplicates(subset=('start-date', 'end-date', 'variant', 'tournament2'), keep='last', inplace=True)
+        merged = merged.drop(columns=['tournament2'])
         # do some more fuzzy matching e.g. from different sources
         merged['location2'] = merged['location'].apply(lambda s: re.match(r'^\w*', s).group())
         merged.drop_duplicates(subset=('start-date', 'end-date', 'variant', 'location2'), keep='last', inplace=True)
