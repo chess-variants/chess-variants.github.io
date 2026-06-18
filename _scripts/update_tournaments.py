@@ -9,8 +9,10 @@ import warnings
 
 import icalendar
 import requests
+from requests.adapters import HTTPAdapter
 import pandas as pd
 from bs4 import BeautifulSoup
+from urllib3.util.retry import Retry
 
 
 ALL_VARIANTS = set(('shogi', 'xiangqi', 'janggi', 'makruk'))
@@ -20,6 +22,7 @@ FFS_URL = 'https://shogi.fr/events/liste/?ical=1'
 SNK_URL = 'https://shogi.es/calendario/lista/?ical=1'
 SHOGIBOND_URL = 'https://shogibond.nl/toernooien/'
 SHOGI_DEUTSCHLAND_URL = 'https://shogideutschland.de/Termine.html'
+REQUEST_TIMEOUT = (15, 45)
 
 DUTCH_MONTHS = {
     'jan': 1,
@@ -81,8 +84,29 @@ GERMAN_MONTHS = {
 }
 
 
+def create_session():
+    retry = Retry(
+        total=3,
+        connect=3,
+        read=3,
+        status=3,
+        backoff_factor=10,
+        status_forcelist=(429, 500, 502, 503, 504),
+        allowed_methods=('GET',),
+        raise_on_status=False,
+    )
+    session = requests.Session()
+    adapter = HTTPAdapter(max_retries=retry)
+    session.mount('https://', adapter)
+    session.mount('http://', adapter)
+    return session
+
+
+SESSION = create_session()
+
+
 def get_content(target, params=None):
-    response = requests.get(target, params=params)
+    response = SESSION.get(target, params=params, timeout=REQUEST_TIMEOUT)
     response.raise_for_status()
     return response.content
 
