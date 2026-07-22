@@ -81,3 +81,10 @@ items:
     link: https://www.schemingmind.com
     link_text: Play
     tags: Chess,Shatranj,Makruk,Crazyhouse,Atomic,Suicide,Losers,Three-Check,King of the Hill,Racing Kings,Alice Chess
+  - title: XiangqiOne
+    description: |-
+      Xiangqi platform to play online against other players or against Pikafish at multiple levels,
+      with an analysis board, puzzles and lessons. Available on the web and as mobile apps.
+    link: https://xiangqi.one
+    link_text: Play
+    tags: Xiangqi
