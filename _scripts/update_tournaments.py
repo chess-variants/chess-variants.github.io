@@ -111,6 +111,15 @@ def get_content(target, params=None):
     return response.content
 
 
+def get_optional_calendar(getter, url, columns, *args, **kwargs):
+    # non-essential source: log and continue if it is unreachable
+    try:
+        return getter(url, columns, *args, **kwargs)
+    except requests.exceptions.RequestException as e:
+        warnings.warn(f'Skipping unavailable source {url}: {e}')
+        return pd.DataFrame([], columns=columns)
+
+
 def get_variant(title, variants):
     assert ALL_VARIANTS.intersection(variants)
     words = set(title.lower().split())
@@ -440,7 +449,7 @@ if __name__ == '__main__':
         calendars.extend([
             get_ics_calendar(DXB_URL, current.columns, ('xiangqi',)),
             get_ics_calendar(FFS_URL, current.columns, ('shogi',)),
-            get_ics_calendar(SNK_URL, current.columns, ('shogi',)),
+            get_optional_calendar(get_ics_calendar, SNK_URL, current.columns, ('shogi',)),
             get_shogibond_calendar(SHOGIBOND_URL, current.columns),
             get_shogideutschland_calendar(SHOGI_DEUTSCHLAND_URL, current.columns),
             get_fesa_calendar(FESA_URL, current.columns),
