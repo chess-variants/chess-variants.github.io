@@ -1,6 +1,7 @@
 ---
 ---
-// Import Main CSS file from theme
+// Dark colour scheme, then main CSS file from theme
+@import "dark";
 @import "main";
 
 .calendar-table thead th {
@@ -8,8 +9,8 @@
   text-transform: capitalize;
   letter-spacing: 0.01em;
   white-space: nowrap;
-  background-color: #eef2f7;
-  border-bottom: 2px solid #d1d5db;
+  background-color: $scheme-main-ter;
+  border-bottom: 2px solid $border;
 }
 
 .calendar-table th:first-child,
@@ -19,6 +20,6 @@
 
 .month-separator td {
   font-weight: 700;
-  background-color: #f3f4f6;
-  border-top: 2px solid #d1d5db;
+  background-color: $scheme-main-bis;
+  border-top: 2px solid $border;
 }
