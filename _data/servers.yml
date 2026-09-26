@@ -88,3 +88,11 @@ items:
     link: https://xiangqi.one
     link_text: Play
     tags: Xiangqi
+  - title: XIANGQI KNIGHT
+    subtitle: Free online Chinese chess (xiangqi) with AI and puzzles
+    description: >-
+      Free xiangqi website with an AI opponent (5 difficulty levels), 259
+      endgame puzzles, and online play with friends via invite links.
+    link: https://cnchesskt.com
+    link_text: Play
+    tags: Xiangqi
