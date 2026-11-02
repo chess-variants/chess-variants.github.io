@@ -57,7 +57,7 @@ items:
     subtitle: Fairy-Stockfish playground in the browser
     description: |- 
        Fairyground serves as a playground to try out Fairy-Stockfish online with custom variants, enabling game play and interactive analysis.
-    link: https://fairyground.vercel.app/
+    link: https://play.fairy-stockfish.org/
     link_text: Open fairyground
     tags: Custom variants,Shogi,Xiangqi,Janggi,Makruk
-    github: ianfab/fairyground
+    github: fairy-stockfish/fairyground
