@@ -110,3 +110,10 @@ items:
     link: http://chinaschach.de/blog/
     link_text: Visit
     tags: Xiangqi
+  - title: Freestyle Chess AI
+    description: |-
+      Website for Chess960 (Freestyle chess) with a library of all 960 starting positions,
+      engine and Lichess stats, a verifiable board randomizer, puzzles, and news.
+    link: https://freestylechess.ai/
+    link_text: Visit
+    tags: Chess960
